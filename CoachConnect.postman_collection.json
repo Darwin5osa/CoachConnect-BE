@@ -7,100 +7,206 @@
 	},
 	"item": [
 		{
-			"name": "Crear Estudiante",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Pérez\",\r\n  \"edad\": 20,\r\n  \"email\": \"juan@example.com\",\r\n  \"contactoCelular\": \"+1234567890\",\r\n  \"foto\": \"https://ejemplo.com/foto.jpg\",\r\n  \"username\": \"juanperez\",\r\n  \"password\": \"contraseña123\",\r\n  \"nivelEducativo\": \"Universitario\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Estudiante",
+			"item": [
+				{
+					"name": "Crear Estudiante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Pérez\",\r\n  \"edad\": 20,\r\n  \"email\": \"juan@example.com\",\r\n  \"contactoCelular\": \"+1234567890\",\r\n  \"foto\": \"https://ejemplo.com/foto.jpg\",\r\n  \"username\": \"juanperez\",\r\n  \"password\": \"contraseña123\",\r\n  \"nivelEducativo\": \"Universitario\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/estudiante",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"estudiante"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener Estudiante por ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/estudiante",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"estudiante"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar Estudiante por ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/estudiante/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"estudiante",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar Estudiante por ID",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Carlos\",\r\n  \"apellido\": \"López\",\r\n  \"edad\": 25,\r\n  \"email\": \"carlos@example.com\",\r\n  \"contactoCelular\": \"+1122334455\",\r\n  \"foto\": \"https://ejemplo.com/foto3.jpg\",\r\n  \"nivelEducativo\": \"Primaria\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Listar Estudiantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estudiante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/estudiante/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"estudiante",
-						"1"
-					]
+				{
+					"name": "Eliminar Estudiante por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estudiante/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Estudiante por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Carlos\",\r\n  \"apellido\": \"López\",\r\n  \"edad\": 25,\r\n  \"email\": \"carlos@example.com\",\r\n  \"contactoCelular\": \"+1122334455\",\r\n  \"foto\": \"https://ejemplo.com/foto3.jpg\",\r\n  \"nivelEducativo\": \"Primaria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiante/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "Tutor",
+			"item": [
+				{
+					"name": "Crear Tutor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellido\": \"Pérez\",\r\n  \"edad\": 20,\r\n  \"email\": \"juan@example.com\",\r\n  \"contactoCelular\": \"+1234567890\",\r\n  \"foto\": \"https://ejemplo.com/foto.jpg\",\r\n  \"username\": \"juanperez\",\r\n  \"password\": \"contraseña123\",\r\n  \"nivelEducativo\": \"Universitario\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/tutor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tutores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tutor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Tutor por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tutor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Tutor por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"María\",\r\n  \"apellido\": \"López\",\r\n  \"edad\": 22,\r\n  \"email\": \"maria@example.com\",\r\n  \"contactoCelular\": \"+1234567890\",\r\n  \"foto\": \"https://ejemplo.com/foto_perfil.jpg\",\r\n  \"nivelEducativo\": \"Universitario\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/tutor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
