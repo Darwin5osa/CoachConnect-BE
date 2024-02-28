@@ -8,16 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "CATEGORIA")
+@Table(name = "CARACTERISTICA")
 @Getter
 @Setter
-public class Categoria {
+public class Caracteristica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "categoria")
+    @ManyToMany(mappedBy = "caracteristica")
     private Set<Tutoria> tutorias = new HashSet<>();
 }
