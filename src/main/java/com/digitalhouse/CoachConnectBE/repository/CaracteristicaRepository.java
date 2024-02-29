@@ -1,7 +1,7 @@
 package com.digitalhouse.CoachConnectBE.repository;
 
 
-import com.digitalhouse.CoachConnectBE.entity.Nivel;
+import com.digitalhouse.CoachConnectBE.entity.Caracteristica;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public interface NivelRepository extends JpaRepository<Nivel,Long> {
+public interface CaracteristicaRepository extends JpaRepository<Caracteristica,Long> {
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Nivel n " +
-            "SET n.nombre = :nombre " +
-            "WHERE n.id = :id")
+    @Query(value = "UPDATE Caracteristica c " +
+            "SET c.nombre = :nombre " +
+            "WHERE c.id = :id")
     void update(
             @Param("id") Long id,
             @Param("nombre") String nombre
@@ -25,5 +25,5 @@ public interface NivelRepository extends JpaRepository<Nivel,Long> {
 
 
 
-    Optional<Nivel> findNivelById(Long id);
+    Optional<Caracteristica> findCaracteristicaById(Long id);
 }
