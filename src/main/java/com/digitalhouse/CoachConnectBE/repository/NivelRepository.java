@@ -18,7 +18,7 @@ public interface NivelRepository extends JpaRepository<Nivel,Long> {
     @Query(value = "UPDATE Nivel n " +
             "SET n.nombre = :nombre " +
             "WHERE n.id = :id")
-    void update(
+    Integer update(
             @Param("id") Long id,
             @Param("nombre") String nombre
     );

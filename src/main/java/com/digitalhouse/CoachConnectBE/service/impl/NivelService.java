@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -39,8 +41,9 @@ public class NivelService implements INivelService {
     @Override
     public Nivel actualizar(Nivel nivel) {
         try {
-            nivelReository.update(nivel.getId(), nivel.getNombre());
-            log.debug("Se actualizo el nivel id " + nivel.getId());
+            Integer elementosModificados = nivelReository.update(nivel.getId(), nivel.getNombre());
+            checkearCantidadModificacion(elementosModificados);
+            log.info("Se actualizo el nivel id " + nivel.getId());
 
             return nivel;
         } catch (NoSuchElementException | EntityNotFoundException exception) {
