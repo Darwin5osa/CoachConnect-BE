@@ -19,7 +19,7 @@ public class Nivel {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "tutoria")
+    @OneToMany(mappedBy = "nivel")
     @JsonIgnore
     private List<Tutoria> tutorias = new ArrayList<>();
 }

@@ -18,6 +18,6 @@ public class Caracteristica {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "caracteristica")
+    @ManyToMany(mappedBy = "caracteristicas")
     private Set<Tutoria> tutorias = new HashSet<>();
 }
