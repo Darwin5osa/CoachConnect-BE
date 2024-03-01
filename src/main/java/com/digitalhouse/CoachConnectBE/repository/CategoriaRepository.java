@@ -18,7 +18,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria,Long> {
     @Query(value = "UPDATE Categoria c " +
             "SET c.nombre = :nombre " +
             "WHERE c.id = :id")
-    void update(
+    Integer update(
             @Param("id") Long id,
             @Param("nombre") String nombre
     );

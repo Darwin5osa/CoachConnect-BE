@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -39,7 +41,8 @@ public class CaracteristicaService implements ICaracteristicaService {
     @Override
     public Caracteristica actualizar(Caracteristica caracteristica) {
         try {
-            caracteristicaReository.update(caracteristica.getId(), caracteristica.getNombre());
+            Integer elementosModificados = caracteristicaReository.update(caracteristica.getId(), caracteristica.getNombre());
+            checkearCantidadModificacion(elementosModificados);
             log.debug("Se actualizo el caracteristica id " + caracteristica.getId());
 
             return caracteristica;

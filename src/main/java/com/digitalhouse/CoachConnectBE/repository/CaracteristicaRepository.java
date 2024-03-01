@@ -18,7 +18,7 @@ public interface CaracteristicaRepository extends JpaRepository<Caracteristica,L
     @Query(value = "UPDATE Caracteristica c " +
             "SET c.nombre = :nombre " +
             "WHERE c.id = :id")
-    void update(
+    Integer update(
             @Param("id") Long id,
             @Param("nombre") String nombre
     );

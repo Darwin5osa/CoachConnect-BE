@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -39,7 +41,8 @@ public class CategoriaService implements ICategoriaService {
     @Override
     public Categoria actualizar(Categoria categoria) {
         try {
-            categoriaReository.update(categoria.getId(), categoria.getNombre());
+            Integer elementosModificados = categoriaReository.update(categoria.getId(), categoria.getNombre());
+            checkearCantidadModificacion(elementosModificados);
             log.debug("Se actualizo el categoria id " + categoria.getId());
 
             return categoria;
