@@ -4,6 +4,7 @@ import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NivelResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.entity.Nivel;
 import com.digitalhouse.CoachConnectBE.service.INivelService;
+import com.digitalhouse.CoachConnectBE.util.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class NivelController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Nivel nivel = mapper.convertValue(nivelDto, Nivel.class);
+        Nivel nivel = Mapper.map(nivelDto, id);
         nivel = nivelService.actualizar(nivel);
         return ResponseEntity.ok(mapper.convertValue(nivel, NivelResultadoDto.class));
     }

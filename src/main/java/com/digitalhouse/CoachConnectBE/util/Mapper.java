@@ -1,12 +1,13 @@
 package com.digitalhouse.CoachConnectBE.util;
 
+import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaracteristicaDto;
+import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
+import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
-import com.digitalhouse.CoachConnectBE.entity.Estudiante;
-import com.digitalhouse.CoachConnectBE.entity.Tutor;
-import com.digitalhouse.CoachConnectBE.entity.Usuario;
+import com.digitalhouse.CoachConnectBE.entity.*;
 
 public class Mapper {
     public static Estudiante map(NuevoEstudianteDto dto) {
@@ -81,5 +82,32 @@ public class Mapper {
         tutor.setDescripcion(dto.getDescripcion());
 
         return tutor;
+    }
+
+    public static Nivel map(NuevoNivelDto dto, Long id) {
+        Nivel nivel = new Nivel();
+
+        nivel.setId(id);
+        nivel.setNombre(dto.getNombre());
+
+        return nivel;
+    }
+
+    public static Categoria map(NuevoCategoriaDto dto, Long id) {
+        Categoria categoria = new Categoria();
+
+        categoria.setId(id);
+        categoria.setNombre(dto.getNombre());
+
+        return categoria;
+    }
+
+    public static Caracteristica map(NuevoCaracteristicaDto dto, Long id) {
+        Caracteristica caracteristica = new Caracteristica();
+
+        caracteristica.setId(id);
+        caracteristica.setNombre(dto.getNombre());
+
+        return caracteristica;
     }
 }

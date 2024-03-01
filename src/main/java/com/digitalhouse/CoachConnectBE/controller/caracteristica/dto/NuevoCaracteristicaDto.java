@@ -1,10 +1,10 @@
 package com.digitalhouse.CoachConnectBE.controller.caracteristica.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class NuevoCaracteristicaDto {
     private String nombre;
 }

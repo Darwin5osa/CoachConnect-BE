@@ -4,6 +4,7 @@ import com.digitalhouse.CoachConnectBE.controller.categoria.dto.CategoriaResulta
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.entity.Categoria;
 import com.digitalhouse.CoachConnectBE.service.ICategoriaService;
+import com.digitalhouse.CoachConnectBE.util.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class CategoriaController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Categoria categoria = mapper.convertValue(categoriaDto, Categoria.class);
+        Categoria categoria = Mapper.map(categoriaDto, id);
         categoria = categoriaService.actualizar(categoria);
         return ResponseEntity.ok(mapper.convertValue(categoria, CategoriaResultadoDto.class));
     }

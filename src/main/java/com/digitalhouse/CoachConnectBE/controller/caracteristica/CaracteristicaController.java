@@ -4,6 +4,7 @@ import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.Caracterist
 import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaracteristicaDto;
 import com.digitalhouse.CoachConnectBE.entity.Caracteristica;
 import com.digitalhouse.CoachConnectBE.service.ICaracteristicaService;
+import com.digitalhouse.CoachConnectBE.util.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class CaracteristicaController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Caracteristica caracteristica = mapper.convertValue(caracteristicaDto, Caracteristica.class);
+        Caracteristica caracteristica = Mapper.map(caracteristicaDto, id);
         caracteristica = caracteristicaService.actualizar(caracteristica);
         return ResponseEntity.ok(mapper.convertValue(caracteristica, CaracteristicaResultadoDto.class));
     }

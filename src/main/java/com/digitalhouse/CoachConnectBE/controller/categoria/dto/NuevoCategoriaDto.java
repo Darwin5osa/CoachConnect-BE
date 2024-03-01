@@ -1,10 +1,10 @@
 package com.digitalhouse.CoachConnectBE.controller.categoria.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class NuevoCategoriaDto {
     private String nombre;
 }
