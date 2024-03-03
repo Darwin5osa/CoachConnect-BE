@@ -12,4 +12,6 @@ public interface INivelService {
     Nivel actualizar(Nivel nivel);
 
     void eliminar(Long id);
+
+    Nivel encontrarUnoPorId(Long nivelId);
 }

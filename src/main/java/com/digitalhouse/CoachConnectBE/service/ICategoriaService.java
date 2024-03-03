@@ -12,4 +12,6 @@ public interface ICategoriaService {
     Categoria actualizar(Categoria categoria);
 
     void eliminar(Long id);
+
+    Categoria encontrarUnoPorId(Long categoriaId);
 }

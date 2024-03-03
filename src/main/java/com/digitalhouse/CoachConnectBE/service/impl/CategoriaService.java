@@ -60,4 +60,9 @@ public class CategoriaService implements ICategoriaService {
             log.debug("El categoria con id " + id + "no existía");
         }
     }
+
+    @Override
+    public Categoria encontrarUnoPorId(Long categoriaId) {
+        return categoriaReository.findCategoriaById(categoriaId).orElse(null);
+    }
 }

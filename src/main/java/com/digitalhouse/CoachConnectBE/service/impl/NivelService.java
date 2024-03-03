@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
 
@@ -59,5 +60,10 @@ public class NivelService implements INivelService {
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El nivel con id " + id + "no existía");
         }
+    }
+
+    @Override
+    public Nivel encontrarUnoPorId(Long nivelId) {
+        return nivelReository.findNivelById(nivelId).orElse(null);
     }
 }

@@ -1,11 +1,10 @@
 package com.digitalhouse.CoachConnectBE.controller.tutoria;
 
-import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
+import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
 import com.digitalhouse.CoachConnectBE.service.ITutoriaService;
 import com.digitalhouse.CoachConnectBE.util.Mapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import java.util.Set;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TutoriaController {
     private final ITutoriaService tutoriaService;
-    private final ObjectMapper mapper;
 
     @GetMapping()
     public ResponseEntity<List<TutoriaResultadoDto>> listar() {
