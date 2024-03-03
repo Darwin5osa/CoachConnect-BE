@@ -12,7 +12,7 @@ public class ActualizarTutorDto {
     private String email;
     private String contactoCelular;
     private String foto;
-    private String profesion;
+    private Long profesion;
 
     private String descripcion;
 }

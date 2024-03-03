@@ -5,6 +5,7 @@ import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDt
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
+import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
@@ -64,7 +65,7 @@ public class Mapper {
         usuario.setFoto(dto.getFoto());
 
         tutor.setUsuario(usuario);
-        tutor.setProfesion(dto.getProfesion());
+        tutor.setProfesion(new Profesion(dto.getProfesion()));
         tutor.setDescripcion(dto.getDescripcion());
 
         return tutor;
@@ -83,7 +84,7 @@ public class Mapper {
 
         tutor.setId(id);
         tutor.setUsuario(usuario);
-        tutor.setProfesion(dto.getProfesion());
+        tutor.setProfesion(new Profesion(dto.getProfesion()));
         tutor.setDescripcion(dto.getDescripcion());
 
         return tutor;
@@ -156,5 +157,14 @@ public class Mapper {
     public static Set<Caracteristica> getSetDeCaracteristcas(NuevoTutoriaDto dto) {
         return dto.getCaracteristicas().stream()
                 .map(Caracteristica::new).collect(Collectors.toSet());
+    }
+
+    public static Profesion map(NuevoProfesionDto dto, Long id) {
+        Profesion profesion = new Profesion();
+
+        profesion.setId(id);
+        profesion.setNombre(dto.getNombre());
+
+        return profesion;
     }
 }

@@ -13,7 +13,9 @@ public class Tutor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String profesion;
+    @ManyToOne
+    @JoinColumn(name = "profesionId")
+    private Profesion profesion;
 
     private String descripcion;
 
@@ -37,19 +39,8 @@ public class Tutor {
         return usuario != null ? usuario.getEmail() : null;
     }
 
-    public String getContactoCelular() {
-        return usuario != null ? usuario.getContactoCelular() : null;
-    }
-
     public String getFoto() {
         return usuario != null ? usuario.getFoto() : null;
     }
 
-    public String getUsername() {
-        return usuario != null ? usuario.getUsername() : null;
-    }
-
-    public String getPassword() {
-        return usuario != null ? usuario.getPassword() : null;
-    }
 }

@@ -13,7 +13,7 @@ public class NuevoTutorDto {
     private String contactoCelular;
     private String foto;
     private String username;
-    private String profesion;
+    private Long profesion;
 
     private String descripcion;
 }
