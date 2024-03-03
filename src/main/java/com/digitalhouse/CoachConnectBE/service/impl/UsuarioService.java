@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -39,7 +41,8 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public Usuario actualizar(Usuario usuario) {
         try {
-            usuarioReository.update(usuario.getId(), usuario.getNombre(), usuario.getApellido(), usuario.getEdad(), usuario.getEmail(), usuario.getPassword(), usuario.getContactoCelular());
+            Integer elementosModificados = usuarioReository.update(usuario.getId(), usuario.getNombre(), usuario.getApellido(), usuario.getEdad(), usuario.getEmail(), usuario.getPassword(), usuario.getContactoCelular());
+            checkearCantidadModificacion(elementosModificados);
             log.info("Se actualizo el usuario id " + usuario.getId());
             return usuario;
         } catch (NoSuchElementException | EntityNotFoundException exception) {

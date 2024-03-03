@@ -18,7 +18,7 @@ public interface EstudianteRepository extends JpaRepository<Estudiante,Long> {
     @Query(value = "UPDATE Estudiante est " +
             "SET est.nivelEducativo = :nivelEducativo " +
             "WHERE est.id = :id")
-    void update(@Param("id") Long id, @Param("nivelEducativo") String nivelEducativo);
+    Integer update(@Param("id") Long id, @Param("nivelEducativo") String nivelEducativo);
 
 
 

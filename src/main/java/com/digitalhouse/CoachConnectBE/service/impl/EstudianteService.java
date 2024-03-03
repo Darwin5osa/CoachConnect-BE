@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -45,7 +47,8 @@ public class EstudianteService implements IEstudianteService {
             estudiante.getUsuario().setId(estudianteReository.findEstudianteById(estudiante.getId()).orElseThrow().getUsuario().getId());
 
             estudiante.setUsuario(usuarioService.actualizar(estudiante.getUsuario()));
-            estudianteReository.update(estudiante.getId(), estudiante.getNivelEducativo());
+            Integer elementosModificados = estudianteReository.update(estudiante.getId(), estudiante.getNivelEducativo());
+            checkearCantidadModificacion(elementosModificados);
             log.debug("Se actualizo el estudiante id " + estudiante.getId());
 
             return estudiante;
