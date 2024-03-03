@@ -7,7 +7,12 @@ import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudiante
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
+import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
+import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.*;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Mapper {
     public static Estudiante map(NuevoEstudianteDto dto) {
@@ -109,5 +114,47 @@ public class Mapper {
         caracteristica.setNombre(dto.getNombre());
 
         return caracteristica;
+    }
+
+    public static Tutoria map(NuevoTutoriaDto dto, Long id) {
+        Tutoria tutoria = new Tutoria();
+
+        tutoria.setId(id);
+        tutoria.setNombre(dto.getNombre());
+        tutoria.setDescripcion(dto.getDescripcion());
+        tutoria.setCategoria(new Categoria(dto.getCategoriaId()));
+        tutoria.setNivel(new Nivel(dto.getNivelId()));
+        tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
+
+        return tutoria;
+    }
+
+    public static TutoriaResultadoDto map(Tutoria tutoria) {
+        return new TutoriaResultadoDto(
+                tutoria.getId(),
+                tutoria.getNombre(),
+                tutoria.getDescripcion(),
+                tutoria.getNivelId(),
+                tutoria.getCategoriaId(),
+                tutoria.getCaracteristicasIds()
+        );
+    }
+
+    public static Tutoria map(NuevoTutoriaDto dto) {
+        Tutoria tutoria = new Tutoria();
+
+        tutoria.setNombre(dto.getNombre());
+        tutoria.setDescripcion(dto.getDescripcion());
+        tutoria.setCategoria(new Categoria(dto.getCategoriaId()));
+        tutoria.setNivel(new Nivel(dto.getNivelId()));
+        tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
+
+        return tutoria;
+    }
+
+
+    public static Set<Caracteristica> getSetDeCaracteristcas(NuevoTutoriaDto dto) {
+        return dto.getCaracteristicas().stream()
+                .map(Caracteristica::new).collect(Collectors.toSet());
     }
 }
