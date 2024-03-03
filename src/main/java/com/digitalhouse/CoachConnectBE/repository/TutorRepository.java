@@ -19,7 +19,7 @@ public interface TutorRepository extends JpaRepository<Tutor,Long> {
             "SET t.profesion = :profesion, " +
             "t.descripcion = :descripcion " +
             "WHERE t.id = :id")
-    void update(
+    Integer update(
             @Param("id") Long id,
             @Param("profesion") String profesion,
             @Param("descripcion") String descripcion
