@@ -15,7 +15,7 @@ public class RecursoNoEncontradoException extends RuntimeException {
     }
 
     public RecursoNoEncontradoException() {
-        super("El valor " + NINGUN_ELEMENTO_MODIFICADO + " no es valido");
+        super(NINGUN_ELEMENTO_MODIFICADO);
         this.message = NINGUN_ELEMENTO_MODIFICADO;
         this.exception = new Exception();
     }
