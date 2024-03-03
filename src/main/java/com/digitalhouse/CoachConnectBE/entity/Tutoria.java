@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,10 +28,21 @@ public class Tutoria {
     private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "NivelId")
+    @JoinColumn(name = "nivelId")
     private Nivel nivel;
 
     @ManyToOne
-    @JoinColumn(name = "CategoriaId")
+    @JoinColumn(name = "categoriaId")
     private Categoria categoria;
+
+    public Long getNivelId() {
+        return nivel != null ? nivel.getId() : null;
+    }
+    public Long getCategoriaId() {
+        return categoria != null ? categoria.getId() : null;
+    }
+
+    public List<Long> getCaracteristicasIds() {
+        return caracteristicas.stream().map(Caracteristica::getId).toList();
+    }
 }

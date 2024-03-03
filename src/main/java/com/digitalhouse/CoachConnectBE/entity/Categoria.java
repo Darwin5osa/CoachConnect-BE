@@ -2,6 +2,7 @@ package com.digitalhouse.CoachConnectBE.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Table(name = "CATEGORIA")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +22,8 @@ public class Categoria {
 
     @ManyToMany(mappedBy = "categoria")
     private Set<Tutoria> tutorias = new HashSet<>();
+
+    public Categoria(Long categoriaId) {
+        this.id = categoriaId;
+    }
 }
