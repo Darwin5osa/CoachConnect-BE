@@ -8,6 +8,7 @@ import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
+import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.*;
@@ -63,6 +64,8 @@ public class Mapper {
         usuario.setEmail(dto.getEmail());
         usuario.setContactoCelular(dto.getContactoCelular());
         usuario.setFoto(dto.getFoto());
+        usuario.setUsername(dto.getUsername());
+        usuario.setPassword(dto.getPassword());
 
         tutor.setUsuario(usuario);
         tutor.setProfesion(new Profesion(dto.getProfesion()));

@@ -13,6 +13,5 @@ public class ActualizarTutorDto {
     private String contactoCelular;
     private String foto;
     private Long profesion;
-
     private String descripcion;
 }

@@ -15,17 +15,12 @@ import java.util.Optional;
 public interface TutorRepository extends JpaRepository<Tutor,Long> {
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Tutor t " +
-            "SET t.profesion = :profesion, " +
-            "t.descripcion = :descripcion " +
-            "WHERE t.id = :id")
+    @Query(value = "UPDATE Tutor t SET t.profesion = (SELECT p FROM Profesion p WHERE p.id = :profesionId), t.descripcion = :descripcion WHERE t.id = :id")
     Integer update(
             @Param("id") Long id,
-            @Param("profesion") String profesion,
+            @Param("profesionId") Long profesionId,
             @Param("descripcion") String descripcion
     );
-
-
 
     Optional<Tutor> findTutorById(Long id);
 }

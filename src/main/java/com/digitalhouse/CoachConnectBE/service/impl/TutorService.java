@@ -1,8 +1,10 @@
 package com.digitalhouse.CoachConnectBE.service.impl;
 
 
+import com.digitalhouse.CoachConnectBE.entity.Profesion;
 import com.digitalhouse.CoachConnectBE.entity.Tutor;
 import com.digitalhouse.CoachConnectBE.repository.TutorRepository;
+import com.digitalhouse.CoachConnectBE.service.IProfesionService;
 import com.digitalhouse.CoachConnectBE.service.ITutorService;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
@@ -25,8 +27,11 @@ public class TutorService implements ITutorService {
 
     private final TutorRepository tutorReository;
     private final IUsuarioService usuarioService;
+    private final IProfesionService profesionService;
 
     public Tutor guardar(Tutor tutor) {
+        checkSiProfesionExiste(tutor.getProfesionId());
+
         tutor.setUsuario(usuarioService.guardar(tutor.getUsuario()));
         tutor = tutorReository.save(tutor);
         log.debug("Se guardo el tutor id " + tutor.getId());
@@ -44,10 +49,12 @@ public class TutorService implements ITutorService {
     @Override
     public Tutor actualizar(Tutor tutor) {
         try {
+            checkSiProfesionExiste(tutor.getProfesionId());
+
             tutor.getUsuario().setId(tutorReository.findTutorById(tutor.getId()).orElseThrow().getUsuario().getId());
 
             tutor.setUsuario(usuarioService.actualizar(tutor.getUsuario()));
-            Integer elementosModificados = tutorReository.update(tutor.getId(), tutor.getProfesion(), tutor.getDescripcion());
+            Integer elementosModificados = tutorReository.update(tutor.getId(), tutor.getProfesionId(), tutor.getDescripcion());
             checkearCantidadModificacion(elementosModificados);
             log.debug("Se actualizo el tutor id " + tutor.getId());
 
@@ -64,6 +71,13 @@ public class TutorService implements ITutorService {
             log.debug("Se elimino el tutor id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El tutor con id " + id + "no existía");
+        }
+    }
+
+    private void checkSiProfesionExiste(Long profesionId) {
+        Profesion profesion = profesionService.encontrarUnoPorId(profesionId);
+        if (profesion == null) {
+            throw new RecursoNoEncontradoException();
         }
     }
 }

@@ -39,8 +39,19 @@ public class Tutor {
         return usuario != null ? usuario.getEmail() : null;
     }
 
+    public String getContactoCelular() {
+        return usuario != null ? usuario.getContactoCelular() : null;
+    }
+
     public String getFoto() {
         return usuario != null ? usuario.getFoto() : null;
     }
 
+    public String getUsername() {
+        return usuario != null ? usuario.getUsername() : null;
+    }
+
+    public Long getProfesionId() {
+        return profesion != null ? profesion.getId() : null;
+    }
 }

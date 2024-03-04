@@ -1,8 +1,9 @@
 package com.digitalhouse.CoachConnectBE.controller.tutor;
 
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
-import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
+import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
+import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.Tutor;
 import com.digitalhouse.CoachConnectBE.service.ITutorService;
 import com.digitalhouse.CoachConnectBE.util.Mapper;
@@ -40,7 +41,7 @@ public class TutorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TutorResultadoDto> actualizar(@RequestBody ActualizarTutorDto tutorDto, @PathVariable Long id) {
+    public ResponseEntity<ActualizarTutorResultadoDto> actualizar(@RequestBody ActualizarTutorDto tutorDto, @PathVariable Long id) {
         log.info("Se recibio tutor para actualizar el tutor con el id " + id);
 
         if (id == null) {
@@ -50,7 +51,7 @@ public class TutorController {
 
         Tutor tutor = Mapper.map(tutorDto, id);
         tutor = tutorService.actualizar(tutor);
-        return ResponseEntity.ok(mapper.convertValue(tutor, TutorResultadoDto.class));
+        return ResponseEntity.ok(mapper.convertValue(tutor, ActualizarTutorResultadoDto.class));
     }
 
 
