@@ -15,5 +15,5 @@ public interface IUsuarioService {
 
     void eliminar(Long id);
 
-    Optional<Usuario> login(String username, String password);
+    Optional<Usuario> login(String email, String password);
 }
