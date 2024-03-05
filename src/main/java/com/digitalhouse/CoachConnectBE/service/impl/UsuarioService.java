@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
 
@@ -58,5 +59,10 @@ public class UsuarioService implements IUsuarioService {
         } catch (EmptyResultDataAccessException exception) {
             log.info("El usuario con id " + id + "no existía");
         }
+    }
+
+    @Override
+    public Optional<Usuario> login(String email, String password) {
+        return usuarioReository.findUsuarioByEmailAndPassword(email, password);
     }
 }
