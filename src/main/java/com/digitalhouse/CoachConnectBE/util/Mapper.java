@@ -1,5 +1,7 @@
 package com.digitalhouse.CoachConnectBE.util;
 
+import com.digitalhouse.CoachConnectBE.controller.admin.dto.ActualizarAdminDto;
+import com.digitalhouse.CoachConnectBE.controller.admin.dto.NuevoAdminDto;
 import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaracteristicaDto;
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
@@ -8,7 +10,6 @@ import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
-import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.*;
@@ -169,5 +170,40 @@ public class Mapper {
         profesion.setNombre(dto.getNombre());
 
         return profesion;
+    }
+
+    public static Admin map(NuevoAdminDto dto) {
+        Admin admin = new Admin();
+        Usuario usuario = new Usuario();
+
+        usuario.setNombre(dto.getNombre());
+        usuario.setApellido(dto.getApellido());
+        usuario.setEdad(dto.getEdad());
+        usuario.setEmail(dto.getEmail());
+        usuario.setContactoCelular(dto.getContactoCelular());
+        usuario.setFoto(dto.getFoto());
+        usuario.setUsername(dto.getUsername());
+        usuario.setPassword(dto.getPassword());
+
+        admin.setUsuario(usuario);
+
+        return admin;
+    }
+
+    public static Admin map(ActualizarAdminDto dto, Long id) {
+        Admin admin = new Admin();
+        Usuario usuario = new Usuario();
+
+        usuario.setNombre(dto.getNombre());
+        usuario.setApellido(dto.getApellido());
+        usuario.setEdad(dto.getEdad());
+        usuario.setEmail(dto.getEmail());
+        usuario.setContactoCelular(dto.getContactoCelular());
+        usuario.setFoto(dto.getFoto());
+
+        admin.setUsuario(usuario);
+        admin.setId(id);
+
+        return admin;
     }
 }
