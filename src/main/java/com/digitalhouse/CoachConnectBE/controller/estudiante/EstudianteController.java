@@ -1,6 +1,7 @@
 package com.digitalhouse.CoachConnectBE.controller.estudiante;
 
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
+import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.EstudianteResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
 import com.digitalhouse.CoachConnectBE.entity.Estudiante;
@@ -40,7 +41,7 @@ public class EstudianteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EstudianteResultadoDto> actualizar(@RequestBody ActualizarEstudianteDto estudianteDto, @PathVariable Long id) {
+    public ResponseEntity<ActualizarEstudianteResultadoDto> actualizar(@RequestBody ActualizarEstudianteDto estudianteDto, @PathVariable Long id) {
         log.info("Se recibio estudiante para actualizar el estudiante con el id " + id);
 
         if (id == null) {
@@ -50,7 +51,7 @@ public class EstudianteController {
 
         Estudiante estudiante = Mapper.map(estudianteDto, id);
         estudiante = estudianteService.actualizar(estudiante);
-        return ResponseEntity.ok(mapper.convertValue(estudiante, EstudianteResultadoDto.class));
+        return ResponseEntity.ok(mapper.convertValue(estudiante, ActualizarEstudianteResultadoDto.class));
     }
 
 
