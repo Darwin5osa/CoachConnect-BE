@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `CoachConnect_dev`.`Usuario` (
   `Foto` VARCHAR(200) NOT NULL,
   `UserName` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
+  `Rol` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
@@ -148,6 +149,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `CoachConnect_dev`.`Categoria` (
   `idCategoria` INT NOT NULL,
   `NombreCategoria` VARCHAR(45) NOT NULL,
+  `Descripcion` VARCHAR(200) NOT NULL,
+  `Foto` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`idCategoria`))
 ENGINE = InnoDB;
 
