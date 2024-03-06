@@ -1,5 +1,5 @@
 # Usa una imagen de OpenJDK como base
-FROM maven:3.8.3-amazoncorretto-17 AS build
+FROM 767398085251.dkr.ecr.us-east-1.amazonaws.com/maven:3.9.6-amazoncorretto-17 AS build
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /
@@ -12,7 +12,7 @@ COPY src ./src
 RUN mvn clean package
 
 # Crea una imagen del contenedor final
-FROM amazoncorretto:17-alpine
+FROM 767398085251.dkr.ecr.us-east-1.amazonaws.com/amazoncorretto:17-alpine
 
 # Copia el archivo JAR de la aplicación a la imagen del contenedor
 COPY --from=build /target/CoachConnect-BE-0.0.1-SNAPSHOT.war /application.war
