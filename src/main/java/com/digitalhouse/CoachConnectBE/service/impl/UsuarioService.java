@@ -65,4 +65,11 @@ public class UsuarioService implements IUsuarioService {
     public Optional<Usuario> login(String email, String password) {
         return usuarioReository.findUsuarioByEmailAndPassword(email, password);
     }
+
+    @Override
+    public String loadUserRolByUserName(String email) {
+        return usuarioReository.findUsuarioByEmail(email)
+                .orElseThrow(RecursoNoEncontradoException::new)
+                .getRol().name();
+    }
 }
