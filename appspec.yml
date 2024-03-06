@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: <nombre_de_tu_tarea_ecs>
+        TaskDefinition: coachconnect-task
         LoadBalancerInfo:
           ContainerName: coachconnect-be
           ContainerPort: 8080
