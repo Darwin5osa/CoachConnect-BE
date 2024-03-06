@@ -1,0 +1,9 @@
+version: 1
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <nombre_de_tu_tarea_ecs>
+        LoadBalancerInfo:
+          ContainerName: coachconnect-be
+          ContainerPort: 8080
