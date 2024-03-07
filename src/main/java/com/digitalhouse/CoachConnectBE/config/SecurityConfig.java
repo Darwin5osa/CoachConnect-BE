@@ -18,7 +18,8 @@ public class SecurityConfig {
                     authorizeRequests
                             .anyRequest().permitAll()
             )
-            .csrf(AbstractHttpConfigurer::disable);
+            .csrf(AbstractHttpConfigurer::disable)
+            .cors(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
