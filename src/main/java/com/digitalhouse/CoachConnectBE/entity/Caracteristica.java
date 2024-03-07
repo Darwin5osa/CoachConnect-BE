@@ -20,7 +20,8 @@ public class Caracteristica {
 
     private String nombre;
 
-    @ManyToMany(mappedBy = "caracteristicas")
+    @OneToMany(mappedBy = "caracteristicas")
+    @JsonIgnore
     private Set<Tutoria> tutorias = new HashSet<>();
 
     public Caracteristica(Long caracteristicaId) {

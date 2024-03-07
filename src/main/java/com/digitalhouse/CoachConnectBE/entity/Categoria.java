@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Categoria {
     private String nombre;
 
     @ManyToMany(mappedBy = "categoria")
+    @JsonIgnore
     private Set<Tutoria> tutorias = new HashSet<>();
 
     public Categoria(Long categoriaId) {
