@@ -74,9 +74,15 @@ public class TutorService implements ITutorService {
         }
     }
 
+    @Override
+    public Tutor encontrarUnoPorId(Long tutorId) {
+        return tutorReository.findTutorById(tutorId).orElse(null);
+    }
+
     private void checkSiProfesionExiste(Long profesionId) {
         Profesion profesion = profesionService.encontrarUnoPorId(profesionId);
         if (profesion == null) {
+            log.error("Profesion no encontrada: " + profesionId);
             throw new RecursoNoEncontradoException();
         }
     }

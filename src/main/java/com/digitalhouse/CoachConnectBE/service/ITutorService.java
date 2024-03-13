@@ -12,4 +12,6 @@ public interface ITutorService {
     Tutor actualizar(Tutor tutor);
 
     void eliminar(Long id);
+
+    Tutor encontrarUnoPorId(Long tutorId);
 }

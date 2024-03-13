@@ -25,7 +25,6 @@ public class UsuarioController {
     @PostMapping()
     public ResponseEntity<?> login(@RequestBody UsuarioLoginDto dto) {
         Optional<Usuario> usuario = usuarioService.login(dto.getEmail(), dto.getPassword());
-        log.info(usuario.orElseThrow().getUsername());
         if (usuario.isPresent()) {
             String token = jwtService.generateToken(usuario.get().getUsername(), usuario.get().getRol().toString());
             return ResponseEntity.ok(new UsuarioToken(token));

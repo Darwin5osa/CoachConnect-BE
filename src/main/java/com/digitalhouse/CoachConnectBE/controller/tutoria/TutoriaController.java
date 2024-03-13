@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/tutoria")
 @Slf4j
+@CrossOrigin("*")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TutoriaController {
     private final ITutoriaService tutoriaService;
@@ -49,10 +48,8 @@ public class TutoriaController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Set<Long> caracteristicaIds = new HashSet<>(tutoriaDto.getCaracteristicas());
-
         Tutoria tutoria = Mapper.map(tutoriaDto, id);
-        tutoria = tutoriaService.actualizar(tutoria, caracteristicaIds);
+        tutoria = tutoriaService.actualizar(tutoria);
         return ResponseEntity.ok(Mapper.map(tutoria));
     }
 

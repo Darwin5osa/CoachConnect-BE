@@ -32,12 +32,21 @@ public class Tutoria {
     private Nivel nivel;
 
     @ManyToOne
+    @JoinColumn(name = "tutorId")
+    private Tutor tutor;
+
+    @ManyToOne
     @JoinColumn(name = "categoriaId")
     private Categoria categoria;
 
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;
     }
+
+    public Long getTutorId() {
+        return tutor != null ? tutor.getId() : null;
+    }
+
     public Long getCategoriaId() {
         return categoria != null ? categoria.getId() : null;
     }
