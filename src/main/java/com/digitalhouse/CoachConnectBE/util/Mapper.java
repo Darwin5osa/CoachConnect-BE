@@ -130,6 +130,7 @@ public class Mapper {
         tutoria.setDescripcion(dto.getDescripcion());
         tutoria.setCategoria(new Categoria(dto.getCategoriaId()));
         tutoria.setNivel(new Nivel(dto.getNivelId()));
+        tutoria.setTutor(new Tutor(dto.getTutorId()));
         tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
 
         return tutoria;
@@ -142,6 +143,7 @@ public class Mapper {
                 tutoria.getDescripcion(),
                 tutoria.getNivelId(),
                 tutoria.getCategoriaId(),
+                tutoria.getTutorId(),
                 tutoria.getCaracteristicasIds()
         );
     }
@@ -153,6 +155,7 @@ public class Mapper {
         tutoria.setDescripcion(dto.getDescripcion());
         tutoria.setCategoria(new Categoria(dto.getCategoriaId()));
         tutoria.setNivel(new Nivel(dto.getNivelId()));
+        tutoria.setTutor(new Tutor(dto.getTutorId()));
         tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
 
         return tutoria;

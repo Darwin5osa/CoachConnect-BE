@@ -1,13 +1,19 @@
 package com.digitalhouse.CoachConnectBE.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TUTOR")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +25,17 @@ public class Tutor {
 
     private String descripcion;
 
+    @OneToMany(mappedBy = "tutor")
+    @JsonIgnore
+    private List<Tutoria> tutorias = new ArrayList<>();
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+
+    public Tutor(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null;

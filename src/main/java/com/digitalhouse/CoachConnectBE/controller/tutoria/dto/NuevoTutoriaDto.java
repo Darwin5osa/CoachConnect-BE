@@ -12,5 +12,6 @@ public class NuevoTutoriaDto {
     private String descripcion;
     private Long nivelId;
     private Long categoriaId;
+    private Long tutorId;
     private List<Long> caracteristicas;
 }
