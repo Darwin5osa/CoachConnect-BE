@@ -640,7 +640,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica\",\r\n  \"descripcion\": \"Descripción de la tutoría\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"caracteristicas\": [1]\r\n}\r\n",
+							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica\",\r\n  \"descripcion\": \"Descripción de la tutoría\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -707,7 +707,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica Diferente\",\r\n  \"descripcion\": \"Descripción de la tutoría Diferente\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"caracteristicas\": [1, 2]\r\n}\r\n",
+							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica Diferente\",\r\n  \"descripcion\": \"Descripción de la tutoría Diferente\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1, 2]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -825,6 +825,39 @@
 							"path": [
 								"admin",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juan@example.com\",\r\n    \"password\": \"contraseña123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
 							]
 						}
 					},
