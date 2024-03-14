@@ -144,7 +144,8 @@ public class Mapper {
                 tutoria.getNivelId(),
                 tutoria.getCategoriaId(),
                 tutoria.getTutorId(),
-                tutoria.getCaracteristicasIds()
+                tutoria.getCaracteristicasIds(),
+                tutoria.getAllImages()
         );
     }
 
@@ -157,6 +158,7 @@ public class Mapper {
         tutoria.setNivel(new Nivel(dto.getNivelId()));
         tutoria.setTutor(new Tutor(dto.getTutorId()));
         tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
+        tutoria.setImages(dto.getFotos());
 
         return tutoria;
     }

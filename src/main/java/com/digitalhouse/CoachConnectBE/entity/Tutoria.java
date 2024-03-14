@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "TUTORIA")
@@ -63,5 +61,17 @@ public class Tutoria {
 
     public List<Long> getCaracteristicasIds() {
         return caracteristicas.stream().map(Caracteristica::getId).toList();
+    }
+
+    public List<String> getAllImages() {
+        return Arrays.asList(imagenPrincipal, imagenSecundaria, imagenAdicional, imagenDestacada, imagenExtra);
+    }
+
+    public void setImages(List<String> fotos) {
+        this.imagenPrincipal = fotos.get(0);
+        this.imagenSecundaria = fotos.get(1);
+        this.imagenAdicional = fotos.get(2);
+        this.imagenDestacada = fotos.get(3);
+        this.imagenExtra = fotos.get(4);
     }
 }
