@@ -15,4 +15,5 @@ public class TutoriaResultadoDto {
     private Long categoriaId;
     private Long tutorId;
     private List<Long> caracteristicas;
+    private List<String> fotos;
 }

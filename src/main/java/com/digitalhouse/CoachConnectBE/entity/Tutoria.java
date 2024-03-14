@@ -21,6 +21,16 @@ public class Tutoria {
 
     private String descripcion;
 
+    private String imagenPrincipal;
+
+    private String imagenSecundaria;
+
+    private String imagenAdicional;
+
+    private String imagenDestacada;
+
+    private String imagenExtra;
+
     @ManyToMany
     @JoinTable(name = "tutoria_caracteristica",
             joinColumns = @JoinColumn(name = "tutoria_id"),
