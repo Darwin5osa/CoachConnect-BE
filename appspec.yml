@@ -1,9 +1,10 @@
-version: 1
-Resources:
-  - TargetService:
-      Type: AWS::ECS::Service
-      Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:767398085251:task-definition/backend-task:1"
-        LoadBalancerInfo:
-          ContainerName: "backend-container"
-          ContainerPort: 8080
+version: 0.0
+os: linux 
+files:
+  - source: / 
+    destination: /
+hooks:
+  ApplicationStart:
+    - location: ~/scripts/coachconnect-run.sh
+      timeout: 60 
+      runas: ubuntu 
