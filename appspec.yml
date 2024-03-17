@@ -5,6 +5,6 @@ files:
     destination: /tmp/
 hooks:
   ApplicationStart:
-    - location: /home/ubuntu/scripts/coachconnect-run.sh
+    - location: coachconnect-run.sh
       timeout: 60 
       runas: ubuntu 
