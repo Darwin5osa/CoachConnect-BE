@@ -8,4 +8,5 @@ import lombok.Getter;
 public class CaracteristicaResultadoDto {
     private Long id;
     private String nombre;
+    private String icono;
 }

@@ -16,14 +16,14 @@ public interface CaracteristicaRepository extends JpaRepository<Caracteristica,L
     @Modifying
     @Transactional
     @Query(value = "UPDATE Caracteristica c " +
-            "SET c.nombre = :nombre " +
+            "SET c.nombre = :nombre, " +
+            "c.icono = :icono " +
             "WHERE c.id = :id")
     Integer update(
-            @Param("id") Long id,
-            @Param("nombre") String nombre
+        @Param("id") Long id,
+        @Param("nombre") String nombre,
+        @Param("icono") String icono
     );
-
-
 
     Optional<Caracteristica> findCaracteristicaById(Long id);
 }

@@ -118,6 +118,7 @@ public class Mapper {
 
         caracteristica.setId(id);
         caracteristica.setNombre(dto.getNombre());
+        caracteristica.setIcono(dto.getIcono());
 
         return caracteristica;
     }
