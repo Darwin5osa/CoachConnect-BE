@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "CARACTERISTICA")
+@Table(name = "caracteristica")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +20,8 @@ public class Caracteristica {
     private Long id;
 
     private String nombre;
+
+    private String icono;
 
     @OneToMany(mappedBy = "caracteristicas")
     @JsonIgnore

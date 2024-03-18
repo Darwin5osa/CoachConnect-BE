@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "NIVEL")
+@Table(name = "nivel_educativo")
 @Getter
 @Setter
 @NoArgsConstructor

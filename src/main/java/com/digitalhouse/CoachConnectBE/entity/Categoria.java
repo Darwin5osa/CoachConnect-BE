@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "CATEGORIA")
+@Table(name = "categoria")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +20,10 @@ public class Categoria {
     private Long id;
 
     private String nombre;
+
+    private String descripcion;
+
+    private String foto;
 
     @ManyToMany(mappedBy = "categoria")
     @JsonIgnore

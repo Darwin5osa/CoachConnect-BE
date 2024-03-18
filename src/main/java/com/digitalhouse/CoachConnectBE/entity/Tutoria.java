@@ -22,13 +22,13 @@ public class Tutoria {
     private String descripcion;
 
     @ManyToMany
-    @JoinTable(name = "tutoria_caracteristica",
+    @JoinTable(name = "caracteristica_tutoria",
             joinColumns = @JoinColumn(name = "tutoria_id"),
             inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
     private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "nivelId")
+    @JoinColumn(name = "nivel_educativo_id")
     private Nivel nivel;
 
     @ManyToOne

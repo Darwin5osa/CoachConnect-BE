@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "PROFESION")
+@Table(name = "profesion")
 @Getter
 @Setter
 @NoArgsConstructor
