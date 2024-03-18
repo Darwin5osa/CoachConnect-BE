@@ -21,13 +21,13 @@ public class Tutoria {
 
     private String imagenPrincipal;
 
-    private String imagenSecundaria;
+    private String imagenSecundaria1;
 
-    private String imagenAdicional;
+    private String imagenSecundaria2;
 
-    private String imagenDestacada;
+    private String imagenSecundaria3;
 
-    private String imagenExtra;
+    private String imagenSecundaria4;
 
     @ManyToMany
     @JoinTable(name = "tutoria_caracteristica",
@@ -64,14 +64,14 @@ public class Tutoria {
     }
 
     public List<String> getAllImages() {
-        return Arrays.asList(imagenPrincipal, imagenSecundaria, imagenAdicional, imagenDestacada, imagenExtra);
+        return Arrays.asList(imagenPrincipal, imagenSecundaria1, imagenSecundaria2, imagenSecundaria3, imagenSecundaria4);
     }
 
     public void setImages(List<String> fotos) {
         this.imagenPrincipal = fotos.get(0);
-        this.imagenSecundaria = fotos.get(1);
-        this.imagenAdicional = fotos.get(2);
-        this.imagenDestacada = fotos.get(3);
-        this.imagenExtra = fotos.get(4);
+        this.imagenSecundaria1 = fotos.get(1);
+        this.imagenSecundaria2 = fotos.get(2);
+        this.imagenSecundaria3 = fotos.get(3);
+        this.imagenSecundaria4 = fotos.get(4);
     }
 }
