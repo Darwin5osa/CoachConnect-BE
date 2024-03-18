@@ -34,7 +34,7 @@ public class TutoriaController {
     public ResponseEntity<TutoriaResultadoDto> guardar(@RequestBody NuevoTutoriaDto nuevoTutoriaDto) {
         log.debug("Se recibio: " + nuevoTutoriaDto.getNombre() + " para guardar en tutoria");
 
-        if (nuevoTutoriaDto.getFotos().size() == CANTIDAD_POSIBLE_DE_IMAGENES) {
+        if (nuevoTutoriaDto.getFotos().size() != CANTIDAD_POSIBLE_DE_IMAGENES) {
             return ResponseEntity.badRequest().body(null);
         }
 
@@ -53,7 +53,7 @@ public class TutoriaController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        if (tutoriaDto.getFotos().size() == CANTIDAD_POSIBLE_DE_IMAGENES) {
+        if (tutoriaDto.getFotos().size() != CANTIDAD_POSIBLE_DE_IMAGENES) {
             return ResponseEntity.badRequest().body(null);
         }
 

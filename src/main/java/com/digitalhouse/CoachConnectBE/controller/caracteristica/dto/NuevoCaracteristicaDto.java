@@ -7,4 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NuevoCaracteristicaDto {
     private String nombre;
+    private String icono;
 }

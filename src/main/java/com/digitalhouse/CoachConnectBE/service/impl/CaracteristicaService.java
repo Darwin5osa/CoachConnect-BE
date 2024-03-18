@@ -41,7 +41,7 @@ public class CaracteristicaService implements ICaracteristicaService {
     @Override
     public Caracteristica actualizar(Caracteristica caracteristica) {
         try {
-            Integer elementosModificados = caracteristicaReository.update(caracteristica.getId(), caracteristica.getNombre());
+            Integer elementosModificados = caracteristicaReository.update(caracteristica.getId(), caracteristica.getNombre(), caracteristica.getIcono());
             checkearCantidadModificacion(elementosModificados);
             log.debug("Se actualizo el caracteristica id " + caracteristica.getId());
 
