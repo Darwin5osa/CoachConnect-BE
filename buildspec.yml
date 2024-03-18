@@ -28,6 +28,8 @@ phases:
       - echo 'docker pull "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"' >> coachconnect-run.sh
       - echo 'docker run -e "RDS_ENDPOINT=${RDS_ENDPOINT}" -e "DB_USERNAME=${DB_USERNAME}" -e "DB_PASSWORD=${DB_PASSWORD}" -p 8080:8080 -d "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG"' >> coachconnect-run.sh  
       - chmod +x coachconnect-run.sh
+      - echo "======================================================="
+      - cat coachconnect-run.sh
 artifacts:
   files:
    - imagedefinitions.json
