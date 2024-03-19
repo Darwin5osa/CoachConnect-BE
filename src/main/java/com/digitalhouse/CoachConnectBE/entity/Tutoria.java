@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "TUTORIA")
+@Table(name = "tutoria")
 @Getter
 @Setter
 public class Tutoria {
@@ -22,9 +22,11 @@ public class Tutoria {
     private String descripcion;
 
     @ManyToMany
-    @JoinTable(name = "caracteristica_tutoria",
-            joinColumns = @JoinColumn(name = "tutoria_id"),
-            inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
+    @JoinTable(
+            name = "caracteristica_tutoria",
+            inverseJoinColumns = @JoinColumn(name = "caracteristica_id"),
+            joinColumns = @JoinColumn(name = "tutoria_id")
+    )
     private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     @ManyToOne
@@ -32,11 +34,11 @@ public class Tutoria {
     private Nivel nivel;
 
     @ManyToOne
-    @JoinColumn(name = "tutorId")
+    @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
     @ManyToOne
-    @JoinColumn(name = "categoriaId")
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     public Long getNivelId() {

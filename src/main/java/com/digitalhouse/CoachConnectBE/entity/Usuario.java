@@ -31,5 +31,5 @@ public class Usuario {
 
     private String password;
 
-    private RolUsuario rol;
+    private String rol;
 }
