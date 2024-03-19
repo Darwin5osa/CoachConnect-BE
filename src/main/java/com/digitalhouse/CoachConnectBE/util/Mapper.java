@@ -134,6 +134,7 @@ public class Mapper {
         tutoria.setTutor(new Tutor(dto.getTutorId()));
         tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
         tutoria.setImages(dto.getFotos());
+        tutoria.setPoliticas(dto.getPoliticas());
 
         return tutoria;
     }
@@ -147,7 +148,8 @@ public class Mapper {
                 tutoria.getCategoriaId(),
                 tutoria.getTutorId(),
                 tutoria.getCaracteristicasIds(),
-                tutoria.getAllImages()
+                tutoria.getAllImages(),
+                tutoria.getPoliticas()
         );
     }
 
@@ -161,6 +163,7 @@ public class Mapper {
         tutoria.setTutor(new Tutor(dto.getTutorId()));
         tutoria.setCaracteristicas(getSetDeCaracteristcas(dto));
         tutoria.setImages(dto.getFotos());
+        tutoria.setPoliticas(dto.getPoliticas());
 
         return tutoria;
     }

@@ -29,6 +29,8 @@ public class Tutoria {
 
     private String imagenSecundaria4;
 
+    private String politicas;
+
     @ManyToMany
     @JoinTable(name = "tutoria_caracteristica",
             joinColumns = @JoinColumn(name = "tutoria_id"),
