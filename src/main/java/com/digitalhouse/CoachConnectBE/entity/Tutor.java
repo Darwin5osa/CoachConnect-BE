@@ -20,7 +20,7 @@ public class Tutor {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "ProfesionId")
+    @JoinColumn(name = "profesion_id")
     private Profesion profesion;
 
     private String descripcion;
