@@ -19,6 +19,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TutoriaController {
+    public static final int CANTIDAD_POSIBLE_DE_IMAGENES = 5;
     private final ITutoriaService tutoriaService;
 
     @GetMapping()
@@ -33,6 +34,10 @@ public class TutoriaController {
     public ResponseEntity<TutoriaResultadoDto> guardar(@RequestBody NuevoTutoriaDto nuevoTutoriaDto) {
         log.debug("Se recibio: " + nuevoTutoriaDto.getNombre() + " para guardar en tutoria");
 
+        if (nuevoTutoriaDto.getFotos().size() != CANTIDAD_POSIBLE_DE_IMAGENES) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
         Tutoria tutoriaux = Mapper.map(nuevoTutoriaDto);
 
         Tutoria tutoria = tutoriaService.guardar(tutoriaux);
@@ -45,6 +50,10 @@ public class TutoriaController {
 
         if (id == null) {
             log.error("El ID proporcionado es nulo.");
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        if (tutoriaDto.getFotos().size() != CANTIDAD_POSIBLE_DE_IMAGENES) {
             return ResponseEntity.badRequest().body(null);
         }
 
