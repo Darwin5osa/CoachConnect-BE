@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.*;
 
 @Entity
-@Table(name = "TUTORIA")
+@Table(name = "tutoria")
 @Getter
 @Setter
 public class Tutoria {
@@ -30,21 +30,23 @@ public class Tutoria {
     private String imagenSecundaria4;
 
     @ManyToMany
-    @JoinTable(name = "tutoria_caracteristica",
-            joinColumns = @JoinColumn(name = "tutoria_id"),
-            inverseJoinColumns = @JoinColumn(name = "caracteristica_id"))
+    @JoinTable(
+            name = "caracteristica_tutoria",
+            inverseJoinColumns = @JoinColumn(name = "caracteristica_id"),
+            joinColumns = @JoinColumn(name = "tutoria_id")
+    )
     private Set<Caracteristica> caracteristicas = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "nivelId")
+    @JoinColumn(name = "nivel_educativo_id")
     private Nivel nivel;
 
     @ManyToOne
-    @JoinColumn(name = "tutorId")
+    @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
     @ManyToOne
-    @JoinColumn(name = "categoriaId")
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     public Long getNivelId() {

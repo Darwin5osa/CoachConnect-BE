@@ -20,10 +20,12 @@ public class Tutor {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "profesionId")
+    @JoinColumn(name = "profesion_id")
     private Profesion profesion;
 
     private String descripcion;
+
+    private Integer calificacion;
 
     @OneToMany(mappedBy = "tutor")
     @JsonIgnore

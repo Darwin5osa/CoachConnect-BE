@@ -30,7 +30,7 @@ public class Mapper {
         usuario.setFoto(dto.getFoto());
         usuario.setUsername(dto.getUsername());
         usuario.setPassword(dto.getPassword());
-        usuario.setRol(RolUsuario.ESTUDIANTE);
+        usuario.setRol(RolUsuario.ESTUDIANTE.toString());
 
         estudiante.setUsuario(usuario);
         estudiante.setNivelEducativo(dto.getNivelEducativo());
@@ -192,7 +192,7 @@ public class Mapper {
         usuario.setFoto(dto.getFoto());
         usuario.setUsername(dto.getUsername());
         usuario.setPassword(dto.getPassword());
-        usuario.setRol(RolUsuario.ADMIN);
+        usuario.setRol(RolUsuario.ADMIN.toString());
 
         admin.setUsuario(usuario);
 

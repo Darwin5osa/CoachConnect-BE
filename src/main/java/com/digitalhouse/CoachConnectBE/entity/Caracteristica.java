@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "CARACTERISTICA")
+@Table(name = "caracteristica")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class Caracteristica {
 
     private String icono;
 
-    @OneToMany(mappedBy = "caracteristicas")
+    @ManyToMany(mappedBy = "caracteristicas")
     @JsonIgnore
     private Set<Tutoria> tutorias = new HashSet<>();
 
