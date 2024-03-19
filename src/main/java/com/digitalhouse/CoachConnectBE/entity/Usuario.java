@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "Usuario")
 @Getter
 @Setter
 public class Usuario {
@@ -31,5 +31,5 @@ public class Usuario {
 
     private String password;
 
-    private RolUsuario rol;
+    private String rol;
 }

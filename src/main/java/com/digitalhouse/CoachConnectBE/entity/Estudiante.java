@@ -13,6 +13,7 @@ public class Estudiante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nivel_educativo")
     private String nivelEducativo;
 
     @OneToOne(cascade = CascadeType.ALL)

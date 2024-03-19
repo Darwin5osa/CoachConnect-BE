@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "ADMIN")
+@Table(name = "admin")
 @Getter
 @Setter
 public class Admin {
@@ -14,7 +14,7 @@ public class Admin {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @JoinColumn(name = "Usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
     public String getNombre() {
