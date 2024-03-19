@@ -25,7 +25,7 @@ public class Categoria {
 
     private String foto;
 
-    @ManyToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria")
     @JsonIgnore
     private Set<Tutoria> tutorias = new HashSet<>();
 
