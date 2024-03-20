@@ -17,6 +17,7 @@ import java.util.Optional;
 @RequestMapping("/login")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Slf4j
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class UsuarioController {
 
     private final JwtService jwtService;

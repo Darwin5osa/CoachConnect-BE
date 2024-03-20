@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/tutor")
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class TutorController {
     private final ITutorService tutorService;
     private final ObjectMapper mapper;

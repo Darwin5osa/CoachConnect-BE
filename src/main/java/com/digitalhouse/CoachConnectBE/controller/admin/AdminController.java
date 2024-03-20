@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/admin")
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class AdminController {
     private final IAdminService adminService;
     private final ObjectMapper mapper;
