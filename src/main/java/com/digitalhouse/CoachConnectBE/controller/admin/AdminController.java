@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.admin;
 
+import com.digitalhouse.CoachConnectBE.config.CorsConfig;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.ActualizarAdminDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.AdminResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.NuevoAdminDto;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequestMapping("/admin")
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class AdminController {
     private final IAdminService adminService;
     private final ObjectMapper mapper;

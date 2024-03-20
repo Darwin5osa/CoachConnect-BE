@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/nivel")
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class NivelController {
     private final INivelService nivelService;
     private final ObjectMapper mapper;

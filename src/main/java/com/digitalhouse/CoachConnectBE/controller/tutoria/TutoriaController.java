@@ -16,8 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/tutoria")
 @Slf4j
-@CrossOrigin("*")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class TutoriaController {
     public static final int CANTIDAD_POSIBLE_DE_IMAGENES = 5;
     private final ITutoriaService tutoriaService;

@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/categoria")
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
 public class CategoriaController {
     private final ICategoriaService categoriaService;
     private final ObjectMapper mapper;
