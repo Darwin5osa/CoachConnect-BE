@@ -1,6 +1,5 @@
 package com.digitalhouse.CoachConnectBE.controller.admin;
 
-import com.digitalhouse.CoachConnectBE.config.CorsConfig;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.ActualizarAdminDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.AdminResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.NuevoAdminDto;
