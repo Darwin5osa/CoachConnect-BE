@@ -54,7 +54,7 @@ public class Tutoria {
 
     @OneToMany(mappedBy = "tutoria")
     @JsonIgnore
-    private Reserva reserva;
+    private Set<Reserva> reservas;
 
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;

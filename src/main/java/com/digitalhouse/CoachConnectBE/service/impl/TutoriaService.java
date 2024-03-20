@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -77,6 +78,24 @@ public class TutoriaService implements ITutoriaService {
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El tutoria con id " + id + "no existía");
         }
+    }
+
+    @Override
+    public List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin) {
+        List<Tutoria> todasLasTutorias = tutoriaReository.findAll();
+
+        return todasLasTutorias.stream()
+                .filter(tutoria -> esTutoriaDisponibleEnRango(tutoria, fechaInicio, fechaFin))
+                .collect(Collectors.toList());
+    }
+
+    private boolean esTutoriaDisponibleEnRango(Tutoria tutoria, LocalDate fechaInicio, LocalDate fechaFin) {
+        List<Reserva> reservas = tutoria.getReservas().stream().toList();
+
+        return reservas.stream()
+                .anyMatch(reserva ->
+                        reserva.getFechaFinReserva().isBefore(fechaInicio.atStartOfDay()) && reserva.getFechaInicioReserva().isAfter(fechaFin.atStartOfDay())
+                );
     }
 
     private void checkSiCaracteristicasExisten(Set<Long> idsCaracteristicas) {

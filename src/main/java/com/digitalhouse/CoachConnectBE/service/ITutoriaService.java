@@ -2,6 +2,7 @@ package com.digitalhouse.CoachConnectBE.service;
 
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ITutoriaService {
@@ -12,4 +13,6 @@ public interface ITutoriaService {
     Tutoria actualizar(Tutoria tutoria);
 
     void eliminar(Long id);
+
+    List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin);
 }
