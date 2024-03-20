@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +51,10 @@ public class Tutoria {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "tutoria")
+    @JsonIgnore
+    private Reserva reserva;
 
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;

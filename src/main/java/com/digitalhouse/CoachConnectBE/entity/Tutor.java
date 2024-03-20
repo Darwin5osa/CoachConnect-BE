@@ -35,6 +35,10 @@ public class Tutor {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
+    @OneToMany(mappedBy = "tutor")
+    @JsonIgnore
+    private Reserva reserva;
+
     public Tutor(Long id) {
         this.id = id;
     }
