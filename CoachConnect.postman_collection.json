@@ -542,7 +542,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nombre\": \"Online\"\r\n}\r\n",
+									"raw": "{\r\n  \"nombre\": \"Online\",\r\n  \"icono\": \"icono de Online\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -609,7 +609,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nombre\": \"Presencial\"\r\n}",
+									"raw": "{\r\n  \"nombre\": \"Presencial\",\r\n  \"icono\": \"icono de Presencial\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -640,7 +640,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica\",\r\n  \"descripcion\": \"Descripción de la tutoría\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1]\r\n}\r\n",
+							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica\",\r\n  \"descripcion\": \"Descripción de la tutoría\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1],\r\n  \"fotos\": [\"foto1\", \"foto2\", \"foto3\", \"foto4\", \"foto5\"],\r\n  \"politicas\": \"politicas de ejemplo\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -681,6 +681,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar  Tutoria Disponibles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tutoria/disponibilidad?fechaInicio=2024-03-05&fechaFin=2024-03-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutoria",
+								"disponibilidad"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-03-05"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-03-12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Eliminar  Tutoria",
 					"request": {
 						"method": "DELETE",
@@ -707,7 +737,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica Diferente\",\r\n  \"descripcion\": \"Descripción de la tutoría Diferente\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1, 2]\r\n}\r\n",
+							"raw": "{\r\n  \"nombre\": \"Tutorias de Matematica Diferente\",\r\n  \"descripcion\": \"Descripción de la tutoría Diferente\",\r\n  \"nivelId\": 1,\r\n  \"categoriaId\": 1,\r\n  \"tutorId\": 1,\r\n  \"caracteristicas\": [1, 2],\r\n  \"fotos\": [\"foto1\", \"foto2\", \"foto3\", \"foto4\", \"foto5\"],\r\n  \"politicas\": \"politicas de ejemplo\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
