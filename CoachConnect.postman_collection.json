@@ -681,6 +681,36 @@
 					"response": []
 				},
 				{
+					"name": "Listar  Tutoria Disponibles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tutoria/disponibilidad?fechaInicio=2024-03-05&fechaFin=2024-03-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutoria",
+								"disponibilidad"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-03-05"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-03-12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Eliminar  Tutoria",
 					"request": {
 						"method": "DELETE",

@@ -1,8 +1,11 @@
 package com.digitalhouse.CoachConnectBE.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "ESTUDIANTE")
@@ -19,6 +22,10 @@ public class Estudiante {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "estudiante")
+    @JsonIgnore
+    private Set<Reserva> reserva;
 
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null;
