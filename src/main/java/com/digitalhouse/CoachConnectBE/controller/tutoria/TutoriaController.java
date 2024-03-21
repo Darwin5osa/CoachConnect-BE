@@ -1,12 +1,14 @@
 package com.digitalhouse.CoachConnectBE.controller.tutoria;
 
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
+import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaDisponibilidadDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
 import com.digitalhouse.CoachConnectBE.service.ITutoriaService;
 import com.digitalhouse.CoachConnectBE.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -89,5 +91,12 @@ public class TutoriaController {
                 .stream()
                 .map(Mapper::map)
                 .toList());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TutoriaDisponibilidadDto> obtenerDisponibilidadTutoria(@PathVariable Long id) {
+        Pair<Tutoria, List<Boolean>> tutoriaConDisponibilidad = tutoriaService.obtenerTutoria(id);
+
+        return ResponseEntity.ok().body(Mapper.map(tutoriaConDisponibilidad.a, tutoriaConDisponibilidad.b));
     }
 }

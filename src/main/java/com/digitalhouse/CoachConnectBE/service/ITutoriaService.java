@@ -1,6 +1,7 @@
 package com.digitalhouse.CoachConnectBE.service;
 
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
+import org.antlr.v4.runtime.misc.Pair;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ITutoriaService {
     void eliminar(Long id);
 
     List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin);
+
+    Pair<Tutoria, List<Boolean>> obtenerTutoria(Long id);
 }
