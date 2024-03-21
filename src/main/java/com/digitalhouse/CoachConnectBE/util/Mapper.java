@@ -11,11 +11,15 @@ import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDt
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
+import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaDisponibilidadDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.*;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Mapper {
     public static Estudiante map(NuevoEstudianteDto dto) {
@@ -217,5 +221,22 @@ public class Mapper {
         admin.setId(id);
 
         return admin;
+    }
+
+    public static TutoriaDisponibilidadDto map(Tutoria tutoria, List<Boolean> disponibilidad) {
+        return new TutoriaDisponibilidadDto (
+                tutoria.getId(),
+                tutoria.getNombre(),
+                tutoria.getDescripcion(),
+                tutoria.getNivelId(),
+                tutoria.getCategoriaId(),
+                tutoria.getTutorId(),
+                tutoria.getCaracteristicasIds(),
+                tutoria.getAllImages(),
+                tutoria.getPoliticas(),
+                IntStream.range(0, disponibilidad.size())
+                        .boxed()
+                        .collect(Collectors.toMap(i -> i + 1, disponibilidad::get, (a, b) -> b, HashMap::new))
+        );
     }
 }

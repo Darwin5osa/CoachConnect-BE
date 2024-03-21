@@ -8,11 +8,13 @@ import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoExce
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -89,6 +91,34 @@ public class TutoriaService implements ITutoriaService {
                     return dsiponibilidad;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Pair<Tutoria, List<Boolean>> obtenerTutoria(Long id) {
+        Tutoria tutoria = tutoriaReository.findById(id).orElse(null);
+
+        if (tutoria == null) {
+            throw new RecursoNoEncontradoException();
+        }
+
+        List<Reserva> reservas = tutoria.getReservas().stream().toList();
+
+        List<Boolean> disponibilidad = new ArrayList<>();
+
+        int diasEnMes = YearMonth.now().lengthOfMonth();
+        for (int i = 0; i < diasEnMes; i++) {
+            disponibilidad.add(false);
+        }
+
+        for (Reserva reserva : reservas) {
+            int diaInicioReserva = reserva.getFechaInicio().getDayOfMonth();
+            int diaFinReserva = reserva.getFechaFin().getDayOfMonth();
+            for (int i = diaInicioReserva - 1; i < diaFinReserva; i++) {
+                disponibilidad.set(i, true);
+            }
+        }
+
+        return new Pair<>(tutoria, disponibilidad);
     }
 
     private boolean esTutoriaDisponibleEnRango(Tutoria tutoria, LocalDate fechaInicio, LocalDate fechaFin) {

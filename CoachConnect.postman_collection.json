@@ -681,6 +681,26 @@
 					"response": []
 				},
 				{
+					"name": "Detail de una tutoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/tutoria/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tutoria",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Listar  Tutoria Disponibles",
 					"request": {
 						"method": "GET",
