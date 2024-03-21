@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "TUTOR")
@@ -37,7 +38,7 @@ public class Tutor {
 
     @OneToMany(mappedBy = "tutor")
     @JsonIgnore
-    private Reserva reserva;
+    private Set<Reserva> reserva;
 
     public Tutor(Long id) {
         this.id = id;

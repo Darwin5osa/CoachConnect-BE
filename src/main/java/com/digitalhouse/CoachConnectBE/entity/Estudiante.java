@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "ESTUDIANTE")
 @Getter
@@ -23,7 +25,7 @@ public class Estudiante {
 
     @OneToMany(mappedBy = "estudiante")
     @JsonIgnore
-    private Reserva reserva;
+    private Set<Reserva> reserva;
 
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null;

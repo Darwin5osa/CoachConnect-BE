@@ -13,10 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TutoriaService implements ITutoriaService {
 
+    public static final boolean TUTORIA_DISPONIBLE = true;
     private final TutoriaRepository tutoriaReository;
     private final ICaracteristicaService caracteristicaService;
     private final ICategoriaService categoriaService;
@@ -82,20 +80,56 @@ public class TutoriaService implements ITutoriaService {
 
     @Override
     public List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Tutoria> todasLasTutorias = tutoriaReository.findAll();
+        List<Tutoria> todasLasTutorias = tutoriaReository.findAll().stream().toList();
 
         return todasLasTutorias.stream()
-                .filter(tutoria -> esTutoriaDisponibleEnRango(tutoria, fechaInicio, fechaFin))
+                .filter(tutoria -> {
+                    boolean dsiponibilidad = esTutoriaDisponibleEnRango(tutoria, fechaInicio, fechaFin);
+                    log.debug("tutoria " + tutoria.getId()+ " esta disponible " + dsiponibilidad);
+                    return dsiponibilidad;
+                })
                 .collect(Collectors.toList());
     }
 
     private boolean esTutoriaDisponibleEnRango(Tutoria tutoria, LocalDate fechaInicio, LocalDate fechaFin) {
-        List<Reserva> reservas = tutoria.getReservas().stream().toList();
+        List<Reserva> reservas = new ArrayList<>(tutoria.getReservas().stream()
+                .filter(reserva -> {
+                            log.debug("reserva id: " + reserva.getId() + " inicio " + reserva.getFechaInicio().plusDays(10) + " vs " + fechaInicio);
+                            log.debug("reserva id: " + reserva.getId() + " fin " +reserva.getFechaFin().minusDays(10) + " vs " + fechaFin);
+                            return (reserva.getFechaInicio().plusDays(10).isAfter(fechaInicio)) && (reserva.getFechaFin().minusDays(10).isBefore(fechaFin));
+                        }
+                ).toList()
+        );
 
-        return reservas.stream()
-                .anyMatch(reserva ->
-                        reserva.getFechaFinReserva().isBefore(fechaInicio.atStartOfDay()) && reserva.getFechaInicioReserva().isAfter(fechaFin.atStartOfDay())
-                );
+        reservas.sort(Comparator.comparing(Reserva::getFechaInicio));
+
+        if (reservas.isEmpty()) {
+            log.debug("Si no hay reservas, la tutoría está disponible");
+            return true;
+        }
+
+        for (int i = 1; i < reservas.size(); i++) {
+            LocalDate fechaFinReservaAnterior = reservas.get(i - 1).getFechaFin();
+            LocalDate fechaInicioReservaActual = reservas.get(i).getFechaInicio();
+            if (fechaInicioReservaActual.minusDays(1).isAfter(fechaFinReservaAnterior)) {
+                log.debug("Verificamos si hay al menos dos días de disponibilidad entre reservas - " + fechaInicioReservaActual.minusDays(1).getDayOfMonth() + " -- " + fechaFinReservaAnterior);
+                return TUTORIA_DISPONIBLE;
+            }
+        }
+
+        if (fechaInicio.isBefore(reservas.get(0).getFechaInicio())) {
+            log.debug("Verificamos si la tutoría está disponible antes de la primera reserva");
+            return true;
+        }
+
+        LocalDate fechaFinUltimaReserva = reservas.get(reservas.size() - 1).getFechaFin();
+        if (fechaFinUltimaReserva.plusDays(1).isBefore(fechaFin)) {
+            log.debug("Verificamos si la tutoría está disponible después de la última reserva");
+            return true;
+        }
+
+        log.debug("no disponible");
+        return false;
     }
 
     private void checkSiCaracteristicasExisten(Set<Long> idsCaracteristicas) {

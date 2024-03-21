@@ -1,14 +1,13 @@
 package com.digitalhouse.CoachConnectBE.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reserva")
-@Getter
 @Setter
 public class Reserva {
 
@@ -17,10 +16,10 @@ public class Reserva {
     private Long id;
 
     @Column(name = "fecha_inicio_reserva")
-    private LocalDateTime fechaInicioReserva;
+    private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_fin_reserva")
-    private LocalDateTime fechaFinReserva;
+    private LocalDateTime fechaFin;
 
     @Column(name = "horas_reservadas")
     private int horasReservadas;
@@ -36,4 +35,32 @@ public class Reserva {
     @ManyToOne
     @JoinColumn(name = "tutoria_id")
     private Tutoria tutoria;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public LocalDate getFechaInicio() {
+        return LocalDate.from(this.fechaInicio);
+    }
+
+    public LocalDate getFechaFin() {
+        return LocalDate.from(this.fechaFin);
+    }
+
+    public int getHorasReservadas() {
+        return this.horasReservadas;
+    }
+
+    public Estudiante getEstudiante() {
+        return this.estudiante;
+    }
+
+    public Tutor getTutor() {
+        return this.tutor;
+    }
+
+    public Tutoria getTutoria() {
+        return this.tutoria;
+    }
 }
