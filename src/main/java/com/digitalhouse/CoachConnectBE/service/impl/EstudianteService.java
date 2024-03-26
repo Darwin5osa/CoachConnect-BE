@@ -5,11 +5,13 @@ import com.digitalhouse.CoachConnectBE.entity.Estudiante;
 import com.digitalhouse.CoachConnectBE.repository.EstudianteRepository;
 import com.digitalhouse.CoachConnectBE.service.IEstudianteService;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,8 @@ public class EstudianteService implements IEstudianteService {
             log.debug("Se elimino el estudiante id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El estudiante con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 }

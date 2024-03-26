@@ -4,11 +4,13 @@ package com.digitalhouse.CoachConnectBE.service.impl;
 import com.digitalhouse.CoachConnectBE.entity.Categoria;
 import com.digitalhouse.CoachConnectBE.repository.CategoriaRepository;
 import com.digitalhouse.CoachConnectBE.service.ICategoriaService;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,8 @@ public class CategoriaService implements ICategoriaService {
             log.debug("Se elimino el categoria id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El categoria con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 

@@ -7,11 +7,13 @@ import com.digitalhouse.CoachConnectBE.repository.TutorRepository;
 import com.digitalhouse.CoachConnectBE.service.IProfesionService;
 import com.digitalhouse.CoachConnectBE.service.ITutorService;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -71,6 +73,8 @@ public class TutorService implements ITutorService {
             log.debug("Se elimino el tutor id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El tutor con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 
