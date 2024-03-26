@@ -4,11 +4,13 @@ package com.digitalhouse.CoachConnectBE.service.impl;
 import com.digitalhouse.CoachConnectBE.entity.Profesion;
 import com.digitalhouse.CoachConnectBE.repository.ProfesionRepository;
 import com.digitalhouse.CoachConnectBE.service.IProfesionService;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,8 @@ public class ProfesionService implements IProfesionService {
             log.debug("Se elimino el profesion id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El profesion con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 

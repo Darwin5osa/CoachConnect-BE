@@ -4,17 +4,18 @@ package com.digitalhouse.CoachConnectBE.service.impl;
 import com.digitalhouse.CoachConnectBE.entity.Nivel;
 import com.digitalhouse.CoachConnectBE.repository.NivelRepository;
 import com.digitalhouse.CoachConnectBE.service.INivelService;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static com.digitalhouse.CoachConnectBE.service.ServiceExtension.checkearCantidadModificacion;
 
@@ -59,6 +60,8 @@ public class NivelService implements INivelService {
             log.debug("Se elimino el nivel id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El nivel con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 
