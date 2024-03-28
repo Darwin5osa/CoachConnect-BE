@@ -56,6 +56,10 @@ public class Tutoria {
     @JsonIgnore
     private Set<Reserva> reservas;
 
+    @OneToMany(mappedBy = "tutoria")
+    @JsonIgnore
+    private List<Resena> resenas = new ArrayList<>();
+
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;
     }

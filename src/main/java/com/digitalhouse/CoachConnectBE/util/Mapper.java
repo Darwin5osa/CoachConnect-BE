@@ -8,6 +8,8 @@ import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstud
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
+import com.digitalhouse.CoachConnectBE.controller.resena.dto.NuevaResenaDto;
+import com.digitalhouse.CoachConnectBE.controller.resena.dto.ResultadoResenaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
@@ -15,6 +17,7 @@ import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaDisponibili
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.entity.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -237,6 +240,34 @@ public class Mapper {
                 IntStream.range(0, disponibilidad.size())
                         .boxed()
                         .collect(Collectors.toMap(i -> i + 1, disponibilidad::get, (a, b) -> b, HashMap::new))
+        );
+    }
+
+    public static Resena map(NuevaResenaDto dto, Long tutoriaId) {
+        Resena resena = new Resena();
+
+        Estudiante estudiante = new Estudiante();
+        estudiante.setId(dto.getEstudianteId());
+        resena.setEstudiante(estudiante);
+
+        Tutoria tutoria = new Tutoria();
+        tutoria.setId(tutoriaId);
+        resena.setTutoria(tutoria);
+
+        resena.setContenido(dto.getContenido());
+        resena.setCalificacion(dto.getCalificacion());
+        resena.setFechaPublicacion(LocalDateTime.now());
+
+        return resena;
+    }
+
+    public static ResultadoResenaDto map(Resena resena) {
+        return new ResultadoResenaDto(
+                resena.getEstudianteId(),
+                resena.getTutoriaId(),
+                resena.getContenido(),
+                resena.getCalificacion(),
+                resena.getFechaPublicacion()
         );
     }
 }
