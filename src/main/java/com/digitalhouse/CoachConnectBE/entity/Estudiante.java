@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,6 +28,10 @@ public class Estudiante {
     @OneToMany(mappedBy = "estudiante")
     @JsonIgnore
     private Set<Reserva> reserva;
+
+    @OneToMany(mappedBy = "estudiante")
+    @JsonIgnore
+    private List<Resena> resenas = new ArrayList<>();
 
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null;

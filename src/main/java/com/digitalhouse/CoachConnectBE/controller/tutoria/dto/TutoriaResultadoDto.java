@@ -17,5 +17,5 @@ public class TutoriaResultadoDto {
     private List<Long> caracteristicas;
     private List<String> fotos;
     private String politicas;
-
+    private Integer calificacionPromedio;
 }

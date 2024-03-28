@@ -4,12 +4,14 @@ package com.digitalhouse.CoachConnectBE.service.impl;
 import com.digitalhouse.CoachConnectBE.entity.*;
 import com.digitalhouse.CoachConnectBE.repository.TutoriaRepository;
 import com.digitalhouse.CoachConnectBE.service.*;
+import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.antlr.v4.runtime.misc.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -29,17 +31,21 @@ public class TutoriaService implements ITutoriaService {
     private final ICategoriaService categoriaService;
     private final INivelService nivelService;
     private final ITutorService tutorService;
+    private final IResenaService resenaService;
 
     public Tutoria guardar(Tutoria tutoria) {
         checkSiComponentesDeTutoriaExisten(tutoria);
         tutoria = tutoriaReository.save(tutoria);
+        tutoria.setCalificacionPromedio(0);
         log.debug("Se guardo el tutoria id " + tutoria.getId());
         return tutoria;
     }
 
     public List<Tutoria> listarTodos() {
         try {
-            return tutoriaReository.findAll();
+            return tutoriaReository.findAll().stream().peek(tutoria ->
+                    tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()))
+            ).toList();
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }
@@ -63,6 +69,7 @@ public class TutoriaService implements ITutoriaService {
 
             tutoriaReository.save(tutoria);
             log.debug("Se actualizo el tutoria id " + tutoria.getId());
+            tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
             return tutoria;
         } catch (NoSuchElementException | EntityNotFoundException exception) {
@@ -77,6 +84,8 @@ public class TutoriaService implements ITutoriaService {
             log.debug("Se elimino el tutoria id " + id);
         } catch (EmptyResultDataAccessException exception) {
             log.debug("El tutoria con id " + id + "no existía");
+        } catch (DataIntegrityViolationException exception) {
+            throw new RecursoConDependenciasException();
         }
     }
 
@@ -90,6 +99,9 @@ public class TutoriaService implements ITutoriaService {
                     log.debug("tutoria " + tutoria.getId()+ " esta disponible " + dsiponibilidad);
                     return dsiponibilidad;
                 })
+                .peek(tutoria ->
+                        tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()))
+                )
                 .collect(Collectors.toList());
     }
 
@@ -117,6 +129,8 @@ public class TutoriaService implements ITutoriaService {
                 disponibilidad.set(i, true);
             }
         }
+
+        tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
         return new Pair<>(tutoria, disponibilidad);
     }

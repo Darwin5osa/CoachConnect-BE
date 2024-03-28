@@ -634,6 +634,83 @@
 					]
 				},
 				{
+					"name": "Reseña",
+					"item": [
+						{
+							"name": "Añadir reseña",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"estudianteId\": 1,\r\n  \"contenido\": \"Excelente trabajo, ¡gracias!\",\r\n  \"calificacion\": 5\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/tutoria/2/resena",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tutoria",
+										"2",
+										"resena"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar reseñas por tutoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tutoria/2/resena",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tutoria",
+										"2",
+										"resena"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar reseñas por estudiante",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/estudiante/1/resena",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"estudiante",
+										"1",
+										"resena"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Crear Tutoria",
 					"request": {
 						"method": "POST",

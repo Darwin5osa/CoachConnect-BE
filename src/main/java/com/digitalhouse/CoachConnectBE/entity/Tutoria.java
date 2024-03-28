@@ -32,6 +32,9 @@ public class Tutoria {
 
     private String politicas;
 
+    @JsonIgnore
+    private Integer calificacionPromedio;
+
     @ManyToMany
     @JoinTable(
             name = "caracteristica_tutoria",
@@ -55,6 +58,10 @@ public class Tutoria {
     @OneToMany(mappedBy = "tutoria")
     @JsonIgnore
     private Set<Reserva> reservas;
+
+    @OneToMany(mappedBy = "tutoria")
+    @JsonIgnore
+    private List<Resena> resenas = new ArrayList<>();
 
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;
