@@ -27,7 +27,7 @@ public class UsuarioController {
     public ResponseEntity<?> login(@RequestBody UsuarioLoginDto dto) {
         Optional<Usuario> usuario = usuarioService.login(dto.getEmail(), dto.getPassword());
         if (usuario.isPresent()) {
-            String token = jwtService.generateToken(usuario.get().getUsername(), usuario.get().getRol());
+            String token = jwtService.generateToken(usuario.get().getUsername(), usuario.get().getRol(), usuario.get().getNombre(), usuario.get().getApellido(), usuario.get().getEmail());
             return ResponseEntity.ok(new UsuarioToken(token));
         }
         return ResponseEntity.status(401).build();
