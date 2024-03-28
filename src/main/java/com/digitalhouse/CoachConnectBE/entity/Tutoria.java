@@ -32,7 +32,7 @@ public class Tutoria {
 
     private String politicas;
 
-    @JsonIgnore
+    @Transient
     private Integer calificacionPromedio;
 
     @ManyToMany
