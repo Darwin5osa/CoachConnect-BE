@@ -32,4 +32,12 @@ public class Resena {
 
     @Column(name = "fecha_publicacion")
     private LocalDateTime fechaPublicacion;
+
+    public Long getTutoriaId() {
+        return tutoria.getId();
+    }
+
+    public Long getEstudianteId() {
+        return estudiante.getId();
+    }
 }
