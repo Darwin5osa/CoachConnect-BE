@@ -11,5 +11,7 @@ public interface IResenaService {
 
     List<Resena> listarPorIdTutoria(Long id);
 
+    Integer obtenerCalificacionPromedio(Long tutoriaId);
+
     void eliminar(Long id);
 }

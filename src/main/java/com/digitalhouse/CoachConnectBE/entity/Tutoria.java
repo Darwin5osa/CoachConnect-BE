@@ -32,6 +32,9 @@ public class Tutoria {
 
     private String politicas;
 
+    @JsonIgnore
+    private Integer calificacionPromedio;
+
     @ManyToMany
     @JoinTable(
             name = "caracteristica_tutoria",

@@ -31,17 +31,21 @@ public class TutoriaService implements ITutoriaService {
     private final ICategoriaService categoriaService;
     private final INivelService nivelService;
     private final ITutorService tutorService;
+    private final IResenaService resenaService;
 
     public Tutoria guardar(Tutoria tutoria) {
         checkSiComponentesDeTutoriaExisten(tutoria);
         tutoria = tutoriaReository.save(tutoria);
+        tutoria.setCalificacionPromedio(0);
         log.debug("Se guardo el tutoria id " + tutoria.getId());
         return tutoria;
     }
 
     public List<Tutoria> listarTodos() {
         try {
-            return tutoriaReository.findAll();
+            return tutoriaReository.findAll().stream().peek(tutoria ->
+                    tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()))
+            ).toList();
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }
@@ -65,6 +69,7 @@ public class TutoriaService implements ITutoriaService {
 
             tutoriaReository.save(tutoria);
             log.debug("Se actualizo el tutoria id " + tutoria.getId());
+            tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
             return tutoria;
         } catch (NoSuchElementException | EntityNotFoundException exception) {
@@ -94,6 +99,9 @@ public class TutoriaService implements ITutoriaService {
                     log.debug("tutoria " + tutoria.getId()+ " esta disponible " + dsiponibilidad);
                     return dsiponibilidad;
                 })
+                .peek(tutoria ->
+                        tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()))
+                )
                 .collect(Collectors.toList());
     }
 
@@ -121,6 +129,8 @@ public class TutoriaService implements ITutoriaService {
                 disponibilidad.set(i, true);
             }
         }
+
+        tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
         return new Pair<>(tutoria, disponibilidad);
     }
