@@ -156,7 +156,8 @@ public class Mapper {
                 tutoria.getTutorId(),
                 tutoria.getCaracteristicasIds(),
                 tutoria.getAllImages(),
-                tutoria.getPoliticas()
+                tutoria.getPoliticas(),
+                tutoria.getCalificacionPromedio()
         );
     }
 
@@ -237,6 +238,7 @@ public class Mapper {
                 tutoria.getCaracteristicasIds(),
                 tutoria.getAllImages(),
                 tutoria.getPoliticas(),
+                tutoria.getCalificacionPromedio(),
                 IntStream.range(0, disponibilidad.size())
                         .boxed()
                         .collect(Collectors.toMap(i -> i + 1, disponibilidad::get, (a, b) -> b, HashMap::new))

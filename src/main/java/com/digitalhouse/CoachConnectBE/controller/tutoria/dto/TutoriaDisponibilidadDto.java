@@ -18,5 +18,6 @@ public class TutoriaDisponibilidadDto {
     private List<Long> caracteristicas;
     private List<String> fotos;
     private String politicas;
+    private Integer calificacionPromedio;
     private HashMap<Integer, Boolean> dias;
 }

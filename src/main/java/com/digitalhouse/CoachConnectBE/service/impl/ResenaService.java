@@ -12,6 +12,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -37,6 +38,16 @@ public class ResenaService implements IResenaService {
     public List<Resena> listarPorIdTutoria(Long id) {
         log.debug("Se listaran todas las reseñas realizadas para la tutoria: " + id);
         return resenaRepository.findByTutoriaId(id);
+    }
+
+    @Override
+    public Integer obtenerCalificacionPromedio(Long tutoriaId) {
+        List<Resena> resenas = listarPorIdTutoria(tutoriaId);
+        if (resenas.isEmpty()) {
+            return 0;
+        }
+        IntStream resenasCalificaciones = resenas.stream().mapToInt(Resena::getCalificacion);
+        return (int) resenasCalificaciones.average().getAsDouble();
     }
 
     @Override
