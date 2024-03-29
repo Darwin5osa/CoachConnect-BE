@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.caracteristica;
 
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.CaracteristicaResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaracteristicaDto;
 import com.digitalhouse.CoachConnectBE.entity.Caracteristica;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/caracteristica")
+@RequestMapping(RoutePaths.CARACTERISTICA)
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })

@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.estudiante;
 
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.EstudianteResultadoDto;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/estudiante")
+@RequestMapping(RoutePaths.ESTUDIANTE)
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })

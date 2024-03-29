@@ -1,6 +1,7 @@
 package com.digitalhouse.CoachConnectBE.controller.usuario;
 
 import com.digitalhouse.CoachConnectBE.config.JwtService;
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioLoginDto;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioToken;
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
@@ -14,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping(RoutePaths.LOGIN)
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Slf4j
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
