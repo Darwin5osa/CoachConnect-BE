@@ -63,6 +63,10 @@ public class Tutoria {
     @JsonIgnore
     private List<Resena> resenas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "tutoria")
+    @JsonIgnore
+    private List<Favorito> favoritos = new ArrayList<>();
+
     public Long getNivelId() {
         return nivel != null ? nivel.getId() : null;
     }

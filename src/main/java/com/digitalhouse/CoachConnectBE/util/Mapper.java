@@ -6,6 +6,7 @@ import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaract
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
+import com.digitalhouse.CoachConnectBE.controller.favorito.dto.FavoritoDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
 import com.digitalhouse.CoachConnectBE.controller.resena.dto.NuevaResenaDto;
@@ -271,5 +272,19 @@ public class Mapper {
                 resena.getCalificacion(),
                 resena.getFechaPublicacion()
         );
+    }
+
+    public static Favorito map(FavoritoDto dto, Long id) {
+        Favorito favorito = new Favorito();
+
+        Tutoria tutoria = new Tutoria();
+        tutoria.setId(dto.getTutoriaId());
+        favorito.setTutoria(tutoria);
+
+        Estudiante estudiante = new Estudiante();
+        estudiante.setId(id);
+        favorito.setEstudiante(estudiante);
+
+        return  favorito;
     }
 }
