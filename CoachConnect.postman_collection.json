@@ -667,6 +667,27 @@
 							"response": []
 						},
 						{
+							"name": "eliminar reseña",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tutoria/2/resena",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tutoria",
+										"2",
+										"resena"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Listar reseñas por tutoria",
 							"request": {
 								"method": "GET",

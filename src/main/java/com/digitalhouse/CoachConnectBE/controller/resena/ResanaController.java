@@ -44,4 +44,17 @@ public class ResanaController {
                 .map(Mapper::map)
                 .toList());
     }
+
+    @DeleteMapping(path = RoutePaths.TUTORIA_RESENA)
+    public ResponseEntity<String> eliminar(@PathVariable Long id) {
+        log.debug("Se recibió la solicitud de eliminar reseña con el id " + id);
+
+        if (id == null) {
+            log.error("El ID proporcionado es nulo.");
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        resenaService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
 }
