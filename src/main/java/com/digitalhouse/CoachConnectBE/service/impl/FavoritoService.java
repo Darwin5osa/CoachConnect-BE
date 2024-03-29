@@ -13,6 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -30,8 +31,13 @@ public class FavoritoService implements IFavoritoService {
     @Override
     public List<Tutoria> listarPorIdEstudiante(Long id) {
         log.debug("Se listaran todos los favoritos del estudiante: " + id);
-        return favoritoRepository.findByEstudianteId(id).stream()
+        List<Favorito> byEstudianteId = favoritoRepository.findByEstudianteId(id);
+        log.info(byEstudianteId.size() + "###########");
+        Stream<Favorito> stream = byEstudianteId.stream();
+        List<Tutoria> list = stream
                 .map(Favorito::getTutoria).toList();
+        log.info(list.size() + "-------------");
+        return list;
     }
 
     @Override

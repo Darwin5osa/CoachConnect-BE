@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface FavoritoRepository extends JpaRepository<Favorito,Long> {
-    @Query("SELECT f FROM Resena f WHERE f.estudiante.id = :estudianteId")
+    @Query("SELECT f FROM Favorito f WHERE f.estudiante.id = :estudianteId")
     List<Favorito> findByEstudianteId(@Param("estudianteId") Long estudianteId);
 }

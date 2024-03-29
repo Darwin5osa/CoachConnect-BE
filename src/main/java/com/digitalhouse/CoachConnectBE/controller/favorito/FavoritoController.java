@@ -37,7 +37,7 @@ public class FavoritoController {
                 .toList());
     }
 
-    @DeleteMapping(path = RoutePaths.TUTORIA_RESENA + "/{favoritoId}")
+    @DeleteMapping(path = "/{favoritoId}")
     public ResponseEntity<String> eliminar(@PathVariable Long id, @PathVariable Long favoritoId) {
         log.debug("Se recibió la solicitud de eliminar favorito con el id " + favoritoId + " del estudiante " + id);
 
