@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.admin;
 
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.ActualizarAdminDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.AdminResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.admin.dto.NuevoAdminDto;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping(RoutePaths.ADMIN)
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
