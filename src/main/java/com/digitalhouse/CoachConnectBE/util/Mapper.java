@@ -81,6 +81,7 @@ public class Mapper {
         usuario.setFoto(dto.getFoto());
         usuario.setUsername(dto.getUsername());
         usuario.setPassword(dto.getPassword());
+        usuario.setRol(RolUsuario.TUTOR.toString());
 
         tutor.setUsuario(usuario);
         tutor.setProfesion(new Profesion(dto.getProfesion()));

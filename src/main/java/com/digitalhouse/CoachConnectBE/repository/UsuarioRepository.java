@@ -2,12 +2,12 @@ package com.digitalhouse.CoachConnectBE.repository;
 
 
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -31,4 +31,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
 
     Optional<Usuario> findUsuarioByEmailAndPassword(String email, String password);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Usuario u " +
+            "SET u.rol = :rol " +
+            "WHERE u.username = :username")
+    Integer cambiarRol(@Param("username") String username, @Param("rol") String rol);
+
+    Optional<Usuario> findUsuarioByUsername(String username);
 }

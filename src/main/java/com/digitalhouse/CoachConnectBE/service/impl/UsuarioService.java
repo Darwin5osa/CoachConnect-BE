@@ -1,10 +1,12 @@
 package com.digitalhouse.CoachConnectBE.service.impl;
 
 
+import com.digitalhouse.CoachConnectBE.entity.RolUsuario;
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
 import com.digitalhouse.CoachConnectBE.repository.UsuarioRepository;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
+import com.digitalhouse.CoachConnectBE.service.exception.UsuarioConUsernameYaExisteException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +28,16 @@ public class UsuarioService implements IUsuarioService {
     private final UsuarioRepository usuarioReository;
 
     public Usuario guardar(Usuario usuario) {
+        checkearUserName(usuario.getUsername());
         usuario = usuarioReository.save(usuario);
         log.info("Se guardo el usuario id " + usuario.getId());
         return usuario;
+    }
+
+    private void checkearUserName(String username) {
+        if (usuarioReository.findUsuarioByUsername(username).isPresent()) {
+            throw new UsuarioConUsernameYaExisteException(username);
+        }
     }
 
     public List<Usuario> listarTodos() {
@@ -64,5 +73,16 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public Optional<Usuario> login(String email, String password) {
         return usuarioReository.findUsuarioByEmailAndPassword(email, password);
+    }
+
+    @Override
+    public void cambiarRol(String username, RolUsuario rol) {
+        try {
+            Integer elementosModificados = usuarioReository.cambiarRol(username, rol.toString());
+            checkearCantidadModificacion(elementosModificados);
+            log.warn("Se actualizo el rol del usuario " + username + " al rol de " + rol);
+        } catch (NoSuchElementException | EntityNotFoundException exception) {
+            throw new RecursoNoEncontradoException(exception.getMessage(), exception);
+        }
     }
 }
