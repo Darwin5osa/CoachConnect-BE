@@ -17,6 +17,7 @@ import com.digitalhouse.CoachConnectBE.controller.reserva.dto.NuevaReservaDto;
 import com.digitalhouse.CoachConnectBE.controller.reserva.dto.ResultadoReservaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
+import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaDisponibilidadDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
@@ -312,6 +313,7 @@ public class Mapper {
 
     public static ResultadoReservaDto map(Reserva reserva) {
         Estudiante estudiante = reserva.getEstudiante();
+        Tutor tutor = reserva.getTutor();
         return new ResultadoReservaDto(
                 reserva.getId(),
                 reserva.getFechaInicio(),
@@ -328,7 +330,19 @@ public class Mapper {
                         estudiante.getUsername(),
                         estudiante.getNivelEducativo()
                 ),
-                map(reserva.getTutoria())
+                map(reserva.getTutoria()),
+                new TutorResultadoDto(
+                        tutor.getId(),
+                        tutor.getNombre(),
+                        tutor.getApellido(),
+                        tutor.getEdad(),
+                        tutor.getEmail(),
+                        tutor.getContactoCelular(),
+                        tutor.getFoto(),
+                        tutor.getUsername(),
+                        tutor.getProfesionId(),
+                        tutor.getDescripcion()
+                )
         );
     }
 

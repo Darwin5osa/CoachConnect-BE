@@ -63,4 +63,8 @@ public class Reserva {
     public Long getEstudianteId() {
         return estudiante.getId();
     }
+
+    public Tutor getTutor() {
+        return tutoria.getTutor();
+    }
 }

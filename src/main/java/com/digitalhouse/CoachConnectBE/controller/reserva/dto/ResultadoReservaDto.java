@@ -1,6 +1,7 @@
 package com.digitalhouse.CoachConnectBE.controller.reserva.dto;
 
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.EstudianteResultadoDto;
+import com.digitalhouse.CoachConnectBE.controller.tutor.dto.TutorResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,5 @@ public class ResultadoReservaDto {
     private int horasReservadas;
     private EstudianteResultadoDto estudiante;
     private TutoriaResultadoDto tutoria;
+    private TutorResultadoDto tutor;
 }
