@@ -12,4 +12,6 @@ public interface IEstudianteService {
     Estudiante actualizar(Estudiante estudiante);
 
     void eliminar(Long id);
+
+    Estudiante obtenerEstudiante(Long estudianteId);
 }

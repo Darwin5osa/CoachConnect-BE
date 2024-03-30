@@ -29,10 +29,6 @@ public class Reserva {
     private Estudiante estudiante;
 
     @ManyToOne
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
-
-    @ManyToOne
     @JoinColumn(name = "tutoria_id")
     private Tutoria tutoria;
 
@@ -56,11 +52,15 @@ public class Reserva {
         return this.estudiante;
     }
 
-    public Tutor getTutor() {
-        return this.tutor;
-    }
-
     public Tutoria getTutoria() {
         return this.tutoria;
+    }
+
+    public Long getTutoriaId() {
+        return tutoria.getId();
+    }
+
+    public Long getEstudianteId() {
+        return estudiante.getId();
     }
 }

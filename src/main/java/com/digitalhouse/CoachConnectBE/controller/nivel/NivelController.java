@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.nivel;
 
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NivelResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.entity.Nivel;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/nivel")
+@RequestMapping(RoutePaths.NIVEL)
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })

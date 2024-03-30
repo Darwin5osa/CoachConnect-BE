@@ -33,6 +33,10 @@ public class Estudiante {
     @JsonIgnore
     private List<Resena> resenas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "estudiante")
+    @JsonIgnore
+    private List<Favorito> favoritos = new ArrayList<>();
+
     public String getNombre() {
         return usuario != null ? usuario.getNombre() : null;
     }

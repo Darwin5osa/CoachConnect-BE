@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "TUTOR")
@@ -35,10 +34,6 @@ public class Tutor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
-
-    @OneToMany(mappedBy = "tutor")
-    @JsonIgnore
-    private Set<Reserva> reserva;
 
     public Tutor(Long id) {
         this.id = id;

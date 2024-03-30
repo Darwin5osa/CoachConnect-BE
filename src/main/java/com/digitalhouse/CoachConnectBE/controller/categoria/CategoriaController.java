@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.controller.categoria;
 
+import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.CategoriaResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.entity.Categoria;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping(RoutePaths.CATEGORIA)
 @Slf4j
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CrossOrigin(origins = { "https://www.coachconnect.tech", "http://localhost:5173" })
