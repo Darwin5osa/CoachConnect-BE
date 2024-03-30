@@ -104,6 +104,79 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Agregar fav",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tutoriaId\": 21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estudiante/2/favorito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"2",
+								"favorito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar fav",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estudiante/2/favorito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"2",
+								"favorito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "quitar fav",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estudiante/2/favorito/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"2",
+								"favorito",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1006,6 +1079,109 @@
 							"port": "8080",
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reserva",
+			"item": [
+				{
+					"name": "Agregar reserva",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-03-29\",\r\n  \"fechaFin\": \"2024-04-05\",\r\n  \"horasReservadas\": 2,\r\n  \"estudianteId\": 2,\r\n  \"tutoriaId\": 21\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar reserva",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaInicio\": \"2024-04-29\",\r\n  \"fechaFin\": \"2024-05-05\",\r\n  \"horasReservadas\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reserva/84",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar reserva",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reserva/85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reserva",
+								"85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar Reservas de un estudiante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estudiante/2/reserva",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estudiante",
+								"2",
+								"reserva"
 							]
 						}
 					},

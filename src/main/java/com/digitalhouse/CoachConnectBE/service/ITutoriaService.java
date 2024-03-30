@@ -17,5 +17,7 @@ public interface ITutoriaService {
 
     List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin);
 
-    Pair<Tutoria, List<Boolean>> obtenerTutoria(Long id);
+    Pair<Tutoria, List<Boolean>> obtenerTutoriaConDisponibilidad(Long id);
+
+    Tutoria obtenerTutoria(Long id);
 }

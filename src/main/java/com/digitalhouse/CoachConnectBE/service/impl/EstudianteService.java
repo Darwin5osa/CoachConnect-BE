@@ -70,4 +70,9 @@ public class EstudianteService implements IEstudianteService {
             throw new RecursoConDependenciasException();
         }
     }
+
+    @Override
+    public Estudiante obtenerEstudiante(Long estudianteId) {
+        return estudianteReository.findEstudianteById(estudianteId).orElseThrow();
+    }
 }

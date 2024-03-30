@@ -106,7 +106,7 @@ public class TutoriaService implements ITutoriaService {
     }
 
     @Override
-    public Pair<Tutoria, List<Boolean>> obtenerTutoria(Long id) {
+    public Pair<Tutoria, List<Boolean>> obtenerTutoriaConDisponibilidad(Long id) {
         Tutoria tutoria = tutoriaReository.findById(id).orElse(null);
 
         if (tutoria == null) {
@@ -133,6 +133,11 @@ public class TutoriaService implements ITutoriaService {
         tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
         return new Pair<>(tutoria, disponibilidad);
+    }
+
+    @Override
+    public Tutoria obtenerTutoria(Long id) {
+        return tutoriaReository.findById(id).orElse(null);
     }
 
     private boolean esTutoriaDisponibleEnRango(Tutoria tutoria, LocalDate fechaInicio, LocalDate fechaFin) {

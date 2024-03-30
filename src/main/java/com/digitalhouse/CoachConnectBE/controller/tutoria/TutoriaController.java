@@ -96,7 +96,7 @@ public class TutoriaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TutoriaDisponibilidadDto> obtenerDisponibilidadTutoria(@PathVariable Long id) {
-        Pair<Tutoria, List<Boolean>> tutoriaConDisponibilidad = tutoriaService.obtenerTutoria(id);
+        Pair<Tutoria, List<Boolean>> tutoriaConDisponibilidad = tutoriaService.obtenerTutoriaConDisponibilidad(id);
 
         return ResponseEntity.ok().body(Mapper.map(tutoriaConDisponibilidad.a, tutoriaConDisponibilidad.b));
     }
