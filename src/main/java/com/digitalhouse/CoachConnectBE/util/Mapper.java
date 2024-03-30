@@ -5,12 +5,16 @@ import com.digitalhouse.CoachConnectBE.controller.admin.dto.NuevoAdminDto;
 import com.digitalhouse.CoachConnectBE.controller.caracteristica.dto.NuevoCaracteristicaDto;
 import com.digitalhouse.CoachConnectBE.controller.categoria.dto.NuevoCategoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.ActualizarEstudianteDto;
+import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.EstudianteResultadoDto;
 import com.digitalhouse.CoachConnectBE.controller.estudiante.dto.NuevoEstudianteDto;
 import com.digitalhouse.CoachConnectBE.controller.favorito.dto.FavoritoDto;
 import com.digitalhouse.CoachConnectBE.controller.nivel.dto.NuevoNivelDto;
 import com.digitalhouse.CoachConnectBE.controller.profesion.dto.NuevoProfesionDto;
 import com.digitalhouse.CoachConnectBE.controller.resena.dto.NuevaResenaDto;
 import com.digitalhouse.CoachConnectBE.controller.resena.dto.ResultadoResenaDto;
+import com.digitalhouse.CoachConnectBE.controller.reserva.dto.ActualizarReservaDto;
+import com.digitalhouse.CoachConnectBE.controller.reserva.dto.NuevaReservaDto;
+import com.digitalhouse.CoachConnectBE.controller.reserva.dto.ResultadoReservaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.ActualizarTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutor.dto.NuevoTutorDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
@@ -286,5 +290,56 @@ public class Mapper {
         favorito.setEstudiante(estudiante);
 
         return  favorito;
+    }
+
+    public static Reserva map(NuevaReservaDto dto) {
+        Reserva reserva = new Reserva();
+
+        Estudiante estudiante = new Estudiante();
+        estudiante.setId(dto.getEstudianteId());
+        reserva.setEstudiante(estudiante);
+
+        Tutoria tutoria = new Tutoria();
+        tutoria.setId(dto.getTutoriaId());
+        reserva.setTutoria(tutoria);
+
+        reserva.setFechaInicio(dto.getFechaInicio().atStartOfDay());
+        reserva.setFechaFin(dto.getFechaFin().atStartOfDay());
+        reserva.setHorasReservadas(dto.getHorasReservadas());
+
+        return reserva;
+    }
+
+    public static ResultadoReservaDto map(Reserva reserva) {
+        Estudiante estudiante = reserva.getEstudiante();
+        return new ResultadoReservaDto(
+                reserva.getId(),
+                reserva.getFechaInicio(),
+                reserva.getFechaFin(),
+                reserva.getHorasReservadas(),
+                new EstudianteResultadoDto(
+                        estudiante.getId(),
+                        estudiante.getNombre(),
+                        estudiante.getApellido(),
+                        estudiante.getEdad(),
+                        estudiante.getEmail(),
+                        estudiante.getContactoCelular(),
+                        estudiante.getFoto(),
+                        estudiante.getUsername(),
+                        estudiante.getNivelEducativo()
+                ),
+                map(reserva.getTutoria())
+        );
+    }
+
+    public static Reserva map(ActualizarReservaDto dto, Long id) {
+        Reserva reserva = new Reserva();
+
+        reserva.setId(id);
+        reserva.setFechaInicio(dto.getFechaInicio().atStartOfDay());
+        reserva.setFechaFin(dto.getFechaFin().atStartOfDay());
+        reserva.setHorasReservadas(dto.getHorasReservadas());
+
+        return reserva;
     }
 }

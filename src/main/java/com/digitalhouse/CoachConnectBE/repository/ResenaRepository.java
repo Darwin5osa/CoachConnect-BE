@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ResenaRepository  extends JpaRepository<Resena,Long> {
+public interface ResenaRepository extends JpaRepository<Resena,Long> {
     @Query("SELECT r FROM Resena r WHERE r.estudiante.id = :estudianteId")
     List<Resena> findByEstudianteId(@Param("estudianteId") Long estudianteId);
 
