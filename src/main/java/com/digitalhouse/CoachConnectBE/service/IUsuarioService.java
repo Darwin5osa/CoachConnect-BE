@@ -1,6 +1,7 @@
 package com.digitalhouse.CoachConnectBE.service;
 
 
+import com.digitalhouse.CoachConnectBE.entity.RolUsuario;
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface IUsuarioService {
     void eliminar(Long id);
 
     Optional<Usuario> login(String email, String password);
+
+    void cambiarRol(String username, RolUsuario rol);
 }

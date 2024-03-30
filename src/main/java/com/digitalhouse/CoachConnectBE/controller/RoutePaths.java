@@ -16,4 +16,5 @@ public class RoutePaths {
     public static final String CARACTERISTICA = "/caracteristica";
     public static final String ADMIN = "/admin";
     public static final String RESERVA = "/reserva";
+    public static final String USER = "/user";
 }
