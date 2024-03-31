@@ -10,5 +10,5 @@ public interface IFavoritoService {
 
     List<Tutoria> listarPorIdEstudiante(Long id);
 
-    void eliminar(Long id);
+    void eliminar(Long estudianteId, Long tutoriaId);
 }

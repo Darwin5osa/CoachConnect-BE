@@ -5,8 +5,10 @@ import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioRol;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioLoginDto;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioToken;
+import com.digitalhouse.CoachConnectBE.entity.Estudiante;
 import com.digitalhouse.CoachConnectBE.entity.RolUsuario;
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
+import com.digitalhouse.CoachConnectBE.service.IEstudianteService;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
 import lombok.RequiredArgsConstructor;
@@ -25,15 +27,26 @@ public class UsuarioController {
 
     private final JwtService jwtService;
     private final IUsuarioService usuarioService;
+    private final IEstudianteService estudianteService;
 
     @PostMapping(path = RoutePaths.LOGIN)
     public ResponseEntity<?> login(@RequestBody UsuarioLoginDto dto) {
         Optional<Usuario> usuario = usuarioService.login(dto.getEmail(), dto.getPassword());
         if (usuario.isPresent()) {
-            String token = jwtService.generateToken(usuario.get().getUsername(), usuario.get().getRol(), usuario.get().getNombre(), usuario.get().getApellido(), usuario.get().getEmail());
+            Long estudianteId = getEstudianteId(usuario.get());
+            String token = jwtService.generateToken(usuario.get().getUsername(), usuario.get().getRol(), usuario.get().getNombre(), usuario.get().getApellido(), usuario.get().getEmail(), estudianteId);
             return ResponseEntity.ok(new UsuarioToken(token));
         }
         return ResponseEntity.status(401).build();
+    }
+
+    private Long getEstudianteId(Usuario usuario) {
+        Estudiante estudiante = estudianteService.obtenerEstudiantePorUsuarioId(usuario.getId());
+        if (estudiante == null) {
+            return null;
+        } else {
+            return estudiante.getId();
+        }
     }
 
     @PutMapping(path = RoutePaths.USER)

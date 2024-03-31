@@ -37,16 +37,16 @@ public class FavoritoController {
                 .toList());
     }
 
-    @DeleteMapping(path = "/{favoritoId}")
-    public ResponseEntity<String> eliminar(@PathVariable Long id, @PathVariable Long favoritoId) {
-        log.debug("Se recibió la solicitud de eliminar favorito con el id " + favoritoId + " del estudiante " + id);
+    @DeleteMapping(path = "/{tutoriaId}")
+    public ResponseEntity<String> eliminar(@PathVariable Long id, @PathVariable Long tutoriaId) {
+        log.debug("Se recibió la solicitud de eliminar favorito con el id " + tutoriaId + " del estudiante " + id);
 
-        if (favoritoId == null) {
+        if ((tutoriaId == null) && (id == null)) {
             log.error("El ID proporcionado es nulo.");
             return ResponseEntity.badRequest().body(null);
         }
 
-        favoritoService.eliminar(favoritoId);
+        favoritoService.eliminar(id, tutoriaId);
         return ResponseEntity.noContent().build();
     }
 }
