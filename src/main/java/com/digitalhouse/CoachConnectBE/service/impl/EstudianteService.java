@@ -75,4 +75,10 @@ public class EstudianteService implements IEstudianteService {
     public Estudiante obtenerEstudiante(Long estudianteId) {
         return estudianteReository.findEstudianteById(estudianteId).orElseThrow();
     }
+
+    @Override
+    public Estudiante obtenerEstudiantePorUsuarioId(Long usuarioId) {
+        return estudianteReository.findEstudianteByUsuarioId(usuarioId)
+                .stream().findFirst().orElse(null);
+    }
 }
