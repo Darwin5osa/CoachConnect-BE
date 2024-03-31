@@ -13,7 +13,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -31,22 +30,17 @@ public class FavoritoService implements IFavoritoService {
     @Override
     public List<Tutoria> listarPorIdEstudiante(Long id) {
         log.debug("Se listaran todos los favoritos del estudiante: " + id);
-        List<Favorito> byEstudianteId = favoritoRepository.findByEstudianteId(id);
-        log.info(byEstudianteId.size() + "###########");
-        Stream<Favorito> stream = byEstudianteId.stream();
-        List<Tutoria> list = stream
+        return favoritoRepository.findByEstudianteId(id).stream()
                 .map(Favorito::getTutoria).toList();
-        log.info(list.size() + "-------------");
-        return list;
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminar(Long estudianteId, Long tutoriaId) {
         try {
-            favoritoRepository.deleteById(id);
-            log.debug("Se quito un favorito id " + id);
+            favoritoRepository.deleteByEstudianteIdAndTutoriaId(estudianteId, tutoriaId);
+            log.debug("Se quito un favorito de estudiante " + estudianteId + " con tutoria " + tutoriaId);
         } catch (EmptyResultDataAccessException exception) {
-            log.debug("El favorito con id " + id + "no existía");
+            log.debug("El favorito de estudiante " + estudianteId + " con tutoria " + tutoriaId +" no existía");
         } catch (DataIntegrityViolationException exception) {
             throw new RecursoConDependenciasException();
         }
