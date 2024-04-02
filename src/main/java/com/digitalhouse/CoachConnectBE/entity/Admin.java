@@ -48,4 +48,8 @@ public class Admin {
     public String getPassword() {
         return usuario != null ? usuario.getPassword() : null;
     }
+
+    public Boolean getHabilitado() {
+        return usuario.getHabilitado();
+    }
 }

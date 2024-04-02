@@ -325,7 +325,8 @@ public class Mapper {
                         estudiante.getContactoCelular(),
                         estudiante.getFoto(),
                         estudiante.getUsername(),
-                        estudiante.getNivelEducativo()
+                        estudiante.getNivelEducativo(),
+                        estudiante.getHabilitado()
                 ),
                 map(reserva.getTutoria()),
                 new TutorResultadoDto(
@@ -338,7 +339,8 @@ public class Mapper {
                         tutor.getFoto(),
                         tutor.getUsername(),
                         tutor.getProfesionId(),
-                        tutor.getDescripcion()
+                        tutor.getDescripcion(),
+                        tutor.getHabilitado()
                 )
         );
     }

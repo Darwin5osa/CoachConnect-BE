@@ -72,7 +72,11 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public Optional<Usuario> login(String email, String password) {
-        return usuarioReository.findUsuarioByEmailAndPassword(email, password);
+        Optional<Usuario> usuario = usuarioReository.findUsuarioByEmailAndPassword(email, password);
+        if (!usuario.orElseThrow().getHabilitado()) {
+            return Optional.empty();
+        }
+        return usuario;
     }
 
     @Override
@@ -81,6 +85,17 @@ public class UsuarioService implements IUsuarioService {
             Integer elementosModificados = usuarioReository.cambiarRol(username, rol.toString());
             checkearCantidadModificacion(elementosModificados);
             log.warn("Se actualizo el rol del usuario " + username + " al rol de " + rol);
+        } catch (NoSuchElementException | EntityNotFoundException exception) {
+            throw new RecursoNoEncontradoException(exception.getMessage(), exception);
+        }
+    }
+
+    @Override
+    public void cambiarEstado(String username, Boolean habilitado) {
+        try {
+            Integer elementosModificados = usuarioReository.cambiarEstado(username, habilitado);
+            checkearCantidadModificacion(elementosModificados);
+            log.warn("Se actualizo el estado del usuario " + username + " a " + (habilitado ? " habilitado" : " deshabilitado"));
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }

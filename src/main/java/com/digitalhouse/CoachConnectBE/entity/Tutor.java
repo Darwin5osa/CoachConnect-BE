@@ -70,4 +70,8 @@ public class Tutor {
     public Long getProfesionId() {
         return profesion != null ? profesion.getId() : null;
     }
+
+    public Boolean getHabilitado() {
+        return usuario.getHabilitado();
+    }
 }

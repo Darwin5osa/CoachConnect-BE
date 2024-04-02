@@ -2,7 +2,8 @@ package com.digitalhouse.CoachConnectBE.controller.usuario;
 
 import com.digitalhouse.CoachConnectBE.config.JwtService;
 import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
-import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioRol;
+import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioEstadoDto;
+import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioRolDto;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioLoginDto;
 import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioToken;
 import com.digitalhouse.CoachConnectBE.entity.Estudiante;
@@ -50,9 +51,15 @@ public class UsuarioController {
     }
 
     @PutMapping(path = RoutePaths.USER)
-    public ResponseEntity<String> cambiarRol(@RequestBody CambioRol dto) {
+    public ResponseEntity<String> cambiarRol(@RequestBody CambioRolDto dto) {
         RolUsuario rol = obtenerRol(dto.getRol());
         usuarioService.cambiarRol(dto.getUsername(), rol);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping(path = RoutePaths.USER)
+    public ResponseEntity<String> cambiarEstado(@RequestBody CambioEstadoDto dto) {
+        usuarioService.cambiarEstado(dto.getUsername(), dto.getHabilitado());
         return ResponseEntity.ok().build();
     }
 
