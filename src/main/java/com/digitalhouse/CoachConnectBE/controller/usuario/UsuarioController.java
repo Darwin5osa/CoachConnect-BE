@@ -2,22 +2,21 @@ package com.digitalhouse.CoachConnectBE.controller.usuario;
 
 import com.digitalhouse.CoachConnectBE.config.JwtService;
 import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
-import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioEstadoDto;
-import com.digitalhouse.CoachConnectBE.controller.usuario.dto.CambioRolDto;
-import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioLoginDto;
-import com.digitalhouse.CoachConnectBE.controller.usuario.dto.UsuarioToken;
+import com.digitalhouse.CoachConnectBE.controller.usuario.dto.*;
 import com.digitalhouse.CoachConnectBE.entity.Estudiante;
 import com.digitalhouse.CoachConnectBE.entity.RolUsuario;
 import com.digitalhouse.CoachConnectBE.entity.Usuario;
 import com.digitalhouse.CoachConnectBE.service.IEstudianteService;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +28,7 @@ public class UsuarioController {
     private final JwtService jwtService;
     private final IUsuarioService usuarioService;
     private final IEstudianteService estudianteService;
+    private final ObjectMapper mapper;
 
     @PostMapping(path = RoutePaths.LOGIN)
     public ResponseEntity<?> login(@RequestBody UsuarioLoginDto dto) {
@@ -61,6 +61,14 @@ public class UsuarioController {
     public ResponseEntity<String> cambiarEstado(@RequestBody CambioEstadoDto dto) {
         usuarioService.cambiarEstado(dto.getUsername(), dto.getHabilitado());
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = RoutePaths.USER)
+    public ResponseEntity<List<UsuarioDto>> listarUsuarios() {
+        return ResponseEntity.ok(usuarioService.listarTodos()
+                .stream()
+                .map(usuario -> mapper.convertValue(usuario, UsuarioDto.class))
+                .toList());
     }
 
     private RolUsuario obtenerRol(String rolString) {
