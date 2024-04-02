@@ -15,4 +15,5 @@ public class EstudianteResultadoDto {
     private String foto;
     private String username;
     private String nivelEducativo;
+    private Boolean habilitado;
 }

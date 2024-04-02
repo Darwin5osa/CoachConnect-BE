@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CambioRol {
+public class CambioEstadoDto {
     private String username;
-    private String rol;
+    private Boolean habilitado;
 }

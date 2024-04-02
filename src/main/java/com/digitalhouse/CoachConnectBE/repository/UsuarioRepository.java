@@ -39,5 +39,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
             "WHERE u.username = :username")
     Integer cambiarRol(@Param("username") String username, @Param("rol") String rol);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Usuario u " +
+            "SET u.habilitado = :habilitado " +
+            "WHERE u.username = :username")
+    Integer cambiarEstado(@Param("username") String username, @Param("habilitado") Boolean habilitado);
+
     Optional<Usuario> findUsuarioByUsername(String username);
 }

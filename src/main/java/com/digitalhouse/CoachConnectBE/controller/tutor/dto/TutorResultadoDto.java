@@ -16,4 +16,5 @@ public class TutorResultadoDto {
     private String username;
     private Long profesionId;
     private String descripcion;
+    private Boolean habilitado;
 }
