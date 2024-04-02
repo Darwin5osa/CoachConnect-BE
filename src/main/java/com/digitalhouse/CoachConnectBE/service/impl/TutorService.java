@@ -42,7 +42,7 @@ public class TutorService implements ITutorService {
 
     public List<Tutor> listarTodos() {
         try {
-            return tutorReository.findAll();
+            return tutorReository.findAll().stream().filter(Tutor::esTutor).toList();
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }

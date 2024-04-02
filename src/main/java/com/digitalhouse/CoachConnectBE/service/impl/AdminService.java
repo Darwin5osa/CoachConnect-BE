@@ -33,7 +33,7 @@ public class AdminService implements IAdminService {
 
     public List<Admin> listarTodos() {
         try {
-            return adminReository.findAll();
+            return adminReository.findAll().stream().filter(Admin::esAdmin).toList();
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }
