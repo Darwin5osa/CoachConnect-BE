@@ -1,5 +1,6 @@
 package com.digitalhouse.CoachConnectBE.service;
 
+import com.digitalhouse.CoachConnectBE.entity.DiaReservado;
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
 import org.antlr.v4.runtime.misc.Pair;
 
@@ -17,7 +18,7 @@ public interface ITutoriaService {
 
     List<Tutoria> obtenerTutoriasDisponibles(LocalDate fechaInicio, LocalDate fechaFin);
 
-    Pair<Tutoria, List<Boolean>> obtenerTutoriaConDisponibilidad(Long id);
+    Pair<Tutoria, List<DiaReservado>> obtenerTutoriaConDisponibilidad(Long id);
 
     Tutoria obtenerTutoria(Long id);
 }
