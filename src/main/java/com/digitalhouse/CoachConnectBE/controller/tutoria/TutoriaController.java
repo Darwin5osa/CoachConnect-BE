@@ -4,6 +4,7 @@ import com.digitalhouse.CoachConnectBE.controller.RoutePaths;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.NuevoTutoriaDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaDisponibilidadDto;
 import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDto;
+import com.digitalhouse.CoachConnectBE.entity.DiaReservado;
 import com.digitalhouse.CoachConnectBE.entity.Tutoria;
 import com.digitalhouse.CoachConnectBE.service.ITutoriaService;
 import com.digitalhouse.CoachConnectBE.util.Mapper;
@@ -96,7 +97,7 @@ public class TutoriaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TutoriaDisponibilidadDto> obtenerDisponibilidadTutoria(@PathVariable Long id) {
-        Pair<Tutoria, List<Boolean>> tutoriaConDisponibilidad = tutoriaService.obtenerTutoriaConDisponibilidad(id);
+        Pair<Tutoria, List<DiaReservado>> tutoriaConDisponibilidad = tutoriaService.obtenerTutoriaConDisponibilidad(id);
 
         return ResponseEntity.ok().body(Mapper.map(tutoriaConDisponibilidad.a, tutoriaConDisponibilidad.b));
     }

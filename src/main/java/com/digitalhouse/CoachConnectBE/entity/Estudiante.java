@@ -68,4 +68,8 @@ public class Estudiante {
     public String getPassword() {
         return usuario != null ? usuario.getPassword() : null;
     }
+
+    public Boolean getHabilitado() {
+        return usuario.getHabilitado();
+    }
 }

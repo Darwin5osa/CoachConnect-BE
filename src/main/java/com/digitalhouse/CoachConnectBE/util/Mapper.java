@@ -24,11 +24,9 @@ import com.digitalhouse.CoachConnectBE.controller.tutoria.dto.TutoriaResultadoDt
 import com.digitalhouse.CoachConnectBE.entity.*;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Mapper {
     public static Estudiante map(NuevoEstudianteDto dto) {
@@ -234,7 +232,7 @@ public class Mapper {
         return admin;
     }
 
-    public static TutoriaDisponibilidadDto map(Tutoria tutoria, List<Boolean> disponibilidad) {
+    public static TutoriaDisponibilidadDto map(Tutoria tutoria, List<DiaReservado> diaReservados) {
         return new TutoriaDisponibilidadDto (
                 tutoria.getId(),
                 tutoria.getNombre(),
@@ -246,9 +244,7 @@ public class Mapper {
                 tutoria.getAllImages(),
                 tutoria.getPoliticas(),
                 tutoria.getCalificacionPromedio(),
-                IntStream.range(0, disponibilidad.size())
-                        .boxed()
-                        .collect(Collectors.toMap(i -> i + 1, disponibilidad::get, (a, b) -> b, HashMap::new))
+                diaReservados
         );
     }
 
@@ -329,7 +325,8 @@ public class Mapper {
                         estudiante.getContactoCelular(),
                         estudiante.getFoto(),
                         estudiante.getUsername(),
-                        estudiante.getNivelEducativo()
+                        estudiante.getNivelEducativo(),
+                        estudiante.getHabilitado()
                 ),
                 map(reserva.getTutoria()),
                 new TutorResultadoDto(
@@ -342,7 +339,8 @@ public class Mapper {
                         tutor.getFoto(),
                         tutor.getUsername(),
                         tutor.getProfesionId(),
-                        tutor.getDescripcion()
+                        tutor.getDescripcion(),
+                        tutor.getHabilitado()
                 )
         );
     }

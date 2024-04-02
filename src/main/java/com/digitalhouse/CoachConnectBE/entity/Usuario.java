@@ -32,4 +32,6 @@ public class Usuario {
     private String password;
 
     private String rol;
+
+    private Boolean habilitado = true;
 }

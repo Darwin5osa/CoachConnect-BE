@@ -14,4 +14,5 @@ public class AdminResultadoDto {
     private String contactoCelular;
     private String foto;
     private String username;
+    private Boolean habilitado;
 }

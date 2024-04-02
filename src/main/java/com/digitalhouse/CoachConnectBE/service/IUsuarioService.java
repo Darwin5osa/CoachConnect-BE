@@ -19,4 +19,6 @@ public interface IUsuarioService {
     Optional<Usuario> login(String email, String password);
 
     void cambiarRol(String username, RolUsuario rol);
+
+    void cambiarEstado(String username, Boolean habilitado);
 }

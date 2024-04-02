@@ -1,11 +1,11 @@
-package com.digitalhouse.CoachConnectBE.controller.tutor.dto;
+package com.digitalhouse.CoachConnectBE.controller.usuario.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class TutorResultadoDto {
+public class UsuarioDto {
     private Long id;
     private String nombre;
     private String apellido;
@@ -14,7 +14,7 @@ public class TutorResultadoDto {
     private String contactoCelular;
     private String foto;
     private String username;
-    private Long profesionId;
-    private String descripcion;
+    private String password;
+    private String rol;
     private Boolean habilitado;
 }

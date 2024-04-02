@@ -1,9 +1,9 @@
 package com.digitalhouse.CoachConnectBE.controller.tutoria.dto;
 
+import com.digitalhouse.CoachConnectBE.entity.DiaReservado;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Getter
@@ -19,5 +19,5 @@ public class TutoriaDisponibilidadDto {
     private List<String> fotos;
     private String politicas;
     private Integer calificacionPromedio;
-    private HashMap<Integer, Boolean> dias;
+    private List<DiaReservado> dias;
 }
