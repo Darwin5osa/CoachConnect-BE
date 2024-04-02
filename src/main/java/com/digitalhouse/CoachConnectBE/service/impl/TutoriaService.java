@@ -16,7 +16,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -106,33 +105,40 @@ public class TutoriaService implements ITutoriaService {
     }
 
     @Override
-    public Pair<Tutoria, List<Boolean>> obtenerTutoriaConDisponibilidad(Long id) {
+    public Pair<Tutoria, List<DiaReservado>> obtenerTutoriaConDisponibilidad(Long id) {
         Tutoria tutoria = tutoriaReository.findById(id).orElse(null);
 
         if (tutoria == null) {
             throw new RecursoNoEncontradoException();
         }
 
-        List<Reserva> reservas = tutoria.getReservas().stream().toList();
+        Set<Reserva> reservas = tutoria.getReservas();
+        List<DiaReservado> listaDeDiasReservados = reservas.stream()
+                .map(reserva -> {
+                    List<DiaReservado> diasDeReserva = new ArrayList<>(Collections.emptyList());
 
-        List<Boolean> disponibilidad = new ArrayList<>();
+                    LocalDate fechaInicio = reserva.getFechaInicio();
+                    LocalDate fechaFin = reserva.getFechaFin();
+                    diasDeReserva.add(new DiaReservado(fechaInicio.getDayOfMonth(), fechaInicio.getMonthValue()));
+                    diasDeReserva.add(new DiaReservado(fechaFin.getDayOfMonth(), fechaFin.getMonthValue()));
 
-        int diasEnMes = YearMonth.now().lengthOfMonth();
-        for (int i = 0; i < diasEnMes; i++) {
-            disponibilidad.add(false);
-        }
+                    fechaInicio.datesUntil(fechaFin)
+                            .forEach(fechaReservada ->
+                                    diasDeReserva.add(new DiaReservado(
+                                            fechaReservada.getDayOfMonth(),
+                                            fechaReservada.getMonthValue())
+                                    )
+                            );
 
-        for (Reserva reserva : reservas) {
-            int diaInicioReserva = reserva.getFechaInicio().getDayOfMonth();
-            int diaFinReserva = reserva.getFechaFin().getDayOfMonth();
-            for (int i = diaInicioReserva - 1; i < diaFinReserva; i++) {
-                disponibilidad.set(i, true);
-            }
-        }
+                    return diasDeReserva;
+                }).reduce(new ArrayList<>(), (reservadosAcumulados, reservados) -> {
+                    reservadosAcumulados.addAll(reservados);
+                    return reservadosAcumulados;
+                });
 
         tutoria.setCalificacionPromedio(resenaService.obtenerCalificacionPromedio(tutoria.getId()));
 
-        return new Pair<>(tutoria, disponibilidad);
+        return new Pair<>(tutoria, listaDeDiasReservados);
     }
 
     @Override
