@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TUTOR")
@@ -73,5 +74,9 @@ public class Tutor {
 
     public Boolean getHabilitado() {
         return usuario.getHabilitado();
+    }
+
+    public Boolean esTutor() {
+        return Objects.equals(usuario.getRol(), RolUsuario.TUTOR.name());
     }
 }

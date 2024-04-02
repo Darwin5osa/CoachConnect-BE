@@ -37,7 +37,7 @@ public class EstudianteService implements IEstudianteService {
 
     public List<Estudiante> listarTodos() {
         try {
-            return estudianteReository.findAll();
+            return estudianteReository.findAll().stream().filter(Estudiante::esEstudiante).toList();
         } catch (NoSuchElementException | EntityNotFoundException exception) {
             throw new RecursoNoEncontradoException(exception.getMessage(), exception);
         }
