@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -71,5 +72,9 @@ public class Estudiante {
 
     public Boolean getHabilitado() {
         return usuario.getHabilitado();
+    }
+
+    public Boolean esEstudiante() {
+        return Objects.equals(usuario.getRol(), RolUsuario.ESTUDIANTE.name());
     }
 }

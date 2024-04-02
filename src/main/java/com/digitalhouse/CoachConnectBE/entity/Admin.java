@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "admin")
 @Getter
@@ -51,5 +53,9 @@ public class Admin {
 
     public Boolean getHabilitado() {
         return usuario.getHabilitado();
+    }
+
+    public Boolean esAdmin() {
+        return Objects.equals(usuario.getRol(), RolUsuario.ADMIN.name());
     }
 }
