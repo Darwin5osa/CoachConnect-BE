@@ -8,6 +8,7 @@ import com.digitalhouse.CoachConnectBE.repository.TutorRepository;
 import com.digitalhouse.CoachConnectBE.repository.UsuarioRepository;
 import com.digitalhouse.CoachConnectBE.service.IUsuarioService;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoException;
+import com.digitalhouse.CoachConnectBE.service.exception.UsuarioConEmailYaExisteException;
 import com.digitalhouse.CoachConnectBE.service.exception.UsuarioConUsernameYaExisteException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class UsuarioService implements IUsuarioService {
 
     public Usuario guardar(Usuario usuario) {
         checkearUserName(usuario.getUsername());
+        checkearEmail(usuario.getEmail());
         usuario = usuarioReository.save(usuario);
         log.info("Se guardo el usuario id " + usuario.getId());
         return usuario;
@@ -42,6 +44,12 @@ public class UsuarioService implements IUsuarioService {
     private void checkearUserName(String username) {
         if (usuarioReository.findUsuarioByUsername(username).isPresent()) {
             throw new UsuarioConUsernameYaExisteException(username);
+        }
+    }
+
+    private void checkearEmail(String email) {
+        if (usuarioReository.findUsuarioByEmail(email).isPresent()) {
+            throw new UsuarioConEmailYaExisteException(email);
         }
     }
 
@@ -56,6 +64,8 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public Usuario actualizar(Usuario usuario) {
         try {
+            checkearUserName(usuario.getUsername());
+            checkearEmail(usuario.getEmail());
             Integer elementosModificados = usuarioReository.update(usuario.getId(), usuario.getNombre(), usuario.getApellido(), usuario.getEdad(), usuario.getEmail(), usuario.getPassword(), usuario.getContactoCelular());
             checkearCantidadModificacion(elementosModificados);
             log.info("Se actualizo el usuario id " + usuario.getId());

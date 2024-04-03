@@ -2,6 +2,7 @@ package com.digitalhouse.CoachConnectBE.controller.exceptionHandler;
 
 import com.digitalhouse.CoachConnectBE.controller.exceptionHandler.dto.ErrorDTO;
 import com.digitalhouse.CoachConnectBE.service.exception.RecursoConDependenciasException;
+import com.digitalhouse.CoachConnectBE.service.exception.UsuarioConEmailYaExisteException;
 import com.digitalhouse.CoachConnectBE.service.exception.UsuarioConUsernameYaExisteException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import com.digitalhouse.CoachConnectBE.service.exception.RecursoNoEncontradoExce
 public class ExceptionHandlerController {
 
     @ExceptionHandler({RecursoNoEncontradoException.class})
-    public ResponseEntity<ErrorDTO> RecursoNoEncontradoHandler(RecursoNoEncontradoException exception) {
+    public ResponseEntity<ErrorDTO> recursoNoEncontradoHandler(RecursoNoEncontradoException exception) {
         String mensaje = "No se encontro el recurso";
 
         logException(exception, mensaje);
@@ -26,7 +27,7 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler({RecursoConDependenciasException.class})
-    public ResponseEntity<ErrorDTO> RecursoConDependenciasException(RecursoConDependenciasException exception) {
+    public ResponseEntity<ErrorDTO> recursoConDependenciasException(RecursoConDependenciasException exception) {
         String mensaje = "El recurso no se puede eliminar dado que esta en uso";
 
         logException(exception, mensaje);
@@ -37,8 +38,19 @@ public class ExceptionHandlerController {
     }
 
     @ExceptionHandler({UsuarioConUsernameYaExisteException.class})
-    public ResponseEntity<ErrorDTO> UsuarioConUsernameYaExisteException(UsuarioConUsernameYaExisteException exception) {
+    public ResponseEntity<ErrorDTO> usuarioConUsernameYaExisteException(UsuarioConUsernameYaExisteException exception) {
         String mensaje = "El username ya esta en uso";
+
+        logException(exception, mensaje);
+
+        ErrorDTO response = new ErrorDTO(HttpStatus.CONFLICT.getReasonPhrase(), mensaje);
+
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler({UsuarioConEmailYaExisteException.class})
+    public ResponseEntity<ErrorDTO> usuarioConEmailYaExisteException(UsuarioConEmailYaExisteException exception) {
+        String mensaje = "El email ya esta en uso";
 
         logException(exception, mensaje);
 
