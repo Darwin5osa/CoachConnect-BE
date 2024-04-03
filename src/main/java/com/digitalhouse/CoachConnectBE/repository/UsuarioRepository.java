@@ -28,8 +28,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
             @Param("contactoCelular") String contactoCelular
     );
 
-
-
     Optional<Usuario> findUsuarioByEmailAndPassword(String email, String password);
 
     @Modifying
@@ -47,4 +45,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Integer cambiarEstado(@Param("username") String username, @Param("habilitado") Boolean habilitado);
 
     Optional<Usuario> findUsuarioByUsername(String username);
+
+    Optional<Usuario> findUsuarioByEmail(String email);
 }
